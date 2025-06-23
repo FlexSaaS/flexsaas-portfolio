@@ -10,7 +10,7 @@ function Features() {
             loop 
             muted 
             playsInline
-            poster="/construction-fallback.png" // Fallback image while video loads
+            poster="/construction-fallback.png"
           >
             <source src="/construction-demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -49,35 +49,42 @@ function Features() {
 export default Features;
 
 const FeaturesContainer = styled.section`
-  padding: 8rem 10%;
+  padding: 6rem 5%;
   background: #f5f7fa;
+
+  @media (min-width: 768px) {
+    padding: 8rem 5%;
+  }
 `;
 
 const FeatureGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 4rem;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
 `;
 
 const FeatureVideo = styled.div`
   position: relative;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
   
-  video {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-  }
-
-  /* Aspect ratio - adjust as needed */
+  /* 16:9 aspect ratio container */
   &::before {
     content: '';
     display: block;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
   }
 
   video {
@@ -88,36 +95,74 @@ const FeatureVideo = styled.div`
     height: 100%;
     object-fit: cover;
   }
+
+  @media (min-width: 768px) {
+    max-width: 100%;
+    height: 75%;
+
+  }
 `;
 
-const FeatureContent = styled.div``;
+const FeatureContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 const FeatureList = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
 `;
 
 const FeatureItem = styled.li`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: 768px) {
+    padding: 1.5rem 2rem;
+  }
 `;
 
 const FeatureIcon = styled.span`
   color: #0066ff;
-  margin-right: 1rem;
-  font-size: 1.5rem;
+  margin-right: 1.5rem;
+  font-size: 1.8rem;
+  flex-shrink: 0;
 `;
 
 const FeatureText = styled.div`
   h3 {
     margin: 0 0 0.5rem 0;
     color: #333;
+    font-size: 1.2rem;
   }
   
   p {
     color: #666;
     margin: 0;
     line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    h3 {
+      font-size: 1.3rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+    }
   }
 `;
