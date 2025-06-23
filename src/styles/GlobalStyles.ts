@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
-    font-family: ${props => props.theme.fonts.primary};
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     line-height: 1.6;
     color: #333;
     background: #fff;
