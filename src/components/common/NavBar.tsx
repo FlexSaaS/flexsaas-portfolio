@@ -1,9 +1,28 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { initFirebase } from "../../firebase";
 
 function Navbar() {
+  const app = initFirebase();
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
+
+  const signIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      if (user) {
+        navigate("/account"); // adjust this path as needed
+      }
+    } catch (err) {
+      console.error("Sign-in error:", err);
+    }
+  };
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,16 +32,18 @@ function Navbar() {
   return (
     <NavContainer>
       <NavLogo to="/">FlexSaaS</NavLogo>
-      
+
       <Hamburger onClick={toggleMenu}>
         {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </Hamburger>
-      
+
       <NavLinks isOpen={isOpen}>
         <NavLink to="/projects?category=portfolios">Building Services</NavLink>
-        <NavLink to="/projects?category=bookings">Hair & Beauty Booking</NavLink>
+        <NavLink to="/projects?category=bookings">
+          Hair & Beauty Booking
+        </NavLink>
         <NavLink to="/about">About Us</NavLink>
-        <CTAButton to="/contact">Get Started</CTAButton>
+        <CTAButton onClick={signIn}>Get Started</CTAButton>
       </NavLinks>
     </NavContainer>
   );
@@ -41,7 +62,7 @@ const NavContainer = styled.nav`
   z-index: 100;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   height: 60px; // Fixed height
-  
+
   @media (max-width: 768px) {
     height: 50px;
   }
@@ -52,7 +73,7 @@ const NavLogo = styled(Link)`
   font-weight: 700;
   color: #333;
   text-decoration: none;
-  
+
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
@@ -62,7 +83,7 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
   display: flex;
   gap: 2rem;
   align-items: center;
-  
+
   @media (max-width: 768px) {
     position: fixed;
     top: 60px; // Matches NavBar height
@@ -74,8 +95,9 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
     padding: 2rem 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    transform: ${({ isOpen }) => isOpen ? 'translateY(0)' : 'translateY(-150%)'};
-    opacity: ${({ isOpen }) => isOpen ? '1' : '0'};
+    transform: ${({ isOpen }) =>
+      isOpen ? "translateY(0)" : "translateY(-150%)"};
+    opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
     z-index: 99;
   }
 `;
@@ -85,31 +107,32 @@ const NavLink = styled(Link)`
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
-  
+
   &:hover {
     color: #0066ff;
   }
-  
+
   @media (max-width: 768px) {
     padding: 0.5rem 0;
     font-size: 1.2rem;
   }
 `;
 
-const CTAButton = styled(Link)`
+const CTAButton = styled.button`
   background: #0066ff;
   color: white;
   padding: 0.8rem 1.5rem;
   border-radius: 4px;
   font-weight: 600;
-  text-decoration: none;
+  border: none;
+  cursor: pointer;
   transition: all 0.3s;
-  
+
   &:hover {
     background: #0052cc;
     transform: translateY(-2px);
   }
-  
+
   @media (max-width: 768px) {
     padding: 1rem 2rem;
     font-size: 1.1rem;
@@ -120,7 +143,7 @@ const Hamburger = styled.div`
   display: none;
   cursor: pointer;
   color: #333;
-  
+
   @media (max-width: 768px) {
     display: block;
   }
