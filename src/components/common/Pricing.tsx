@@ -178,6 +178,7 @@ const ServiceTab = styled.button<{ active?: boolean }>`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-bottom : 25px;
 
   &:hover {
     background: ${({ active }) => (active ? "#472196" : "#f0f0f0")};
