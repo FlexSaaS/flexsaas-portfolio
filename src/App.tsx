@@ -5,7 +5,6 @@ import Navbar from './components/common/NavBar';
 import Footer from './components/common/Footer';
 import Home from './pages/Home';
 import GlobalStyles from './styles/GlobalStyles';
-// import Home from './pages/Home';
 // import Construction from './pages/Construction';
 // import Booking from './pages/Booking';
 // import About from './pages/About';
@@ -15,7 +14,7 @@ import GlobalStyles from './styles/GlobalStyles';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles theme={theme}/>
+      <GlobalStyles />
       <Router>
         <Navbar />
         <Routes>
