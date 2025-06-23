@@ -19,8 +19,8 @@ function Navbar() {
       </Hamburger>
       
       <NavLinks isOpen={isOpen}>
-        <NavLink to="/construction">Building Services</NavLink>
-        <NavLink to="/booking">Hair & Beauty Booking</NavLink>
+        <NavLink to="/projects?category=portfolios">Building Services</NavLink>
+        <NavLink to="/projects?category=bookings">Hair & Beauty Booking</NavLink>
         <NavLink to="/about">About Us</NavLink>
         <CTAButton to="/contact">Get Started</CTAButton>
       </NavLinks>
@@ -34,15 +34,16 @@ const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 5%;
+  padding: 1rem 5%;
   background: rgb(255, 255, 255);
   position: fixed;
   width: 100%;
   z-index: 100;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 60px; // Fixed height
   
   @media (max-width: 768px) {
-    padding: 1rem 5%;
+    height: 50px;
   }
 `;
 
@@ -64,7 +65,7 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
   
   @media (max-width: 768px) {
     position: fixed;
-    top: 70px;
+    top: 60px; // Matches NavBar height
     left: 0;
     width: 100%;
     background: white;

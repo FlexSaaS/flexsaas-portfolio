@@ -5,11 +5,7 @@ import Navbar from './components/common/NavBar';
 import Footer from './components/common/Footer';
 import Home from './pages/Home';
 import GlobalStyles from './styles/GlobalStyles';
-// import Construction from './pages/Construction';
-// import Booking from './pages/Booking';
-// import About from './pages/About';
-// import Contact from './pages/Contact';
-// import Footer from './components/Footer';
+import Projects from './components/common/Projects';
 
 function App() {
   return (
@@ -19,10 +15,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/construction" element={<Construction />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/projects" element={<Projects />} />
         </Routes>
         <Footer />
       </Router>

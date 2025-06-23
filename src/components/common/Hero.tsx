@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Hero() {
@@ -10,8 +11,8 @@ function Hero() {
           and powerful booking systems for hair & beauty experts.
         </HeroSubtitle>
         <ButtonGroup>
-          <PrimaryButton>Get Started</PrimaryButton>
-          <SecondaryButton>Learn More</SecondaryButton>
+          <PrimaryButton to="/contact">Get Started</PrimaryButton>
+          <SecondaryButton to="#">Learn More</SecondaryButton>
         </ButtonGroup>
       </HeroContent>
     </HeroContainer>
@@ -80,7 +81,7 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const PrimaryButton = styled.button`
+const PrimaryButton = styled(Link)`
   background: #0066ff;
   color: white;
   border: none;
@@ -101,7 +102,7 @@ const PrimaryButton = styled.button`
   }
 `;
 
-const SecondaryButton = styled.button`
+const SecondaryButton = styled(Link)`
   background: transparent;
   color: #0066ff;
   border: 2px solid #0066ff;
