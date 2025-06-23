@@ -1,4 +1,4 @@
-import Features from "../components/common/FeatureHighlight";
+// import Features from "../components/common/FeatureHighlight";
 import Hero from "../components/common/Hero";
 import Pricing from "../components/common/Pricing";
 import Projects from "../components/common/Projects";
@@ -13,7 +13,7 @@ function Home() {
       <Hero />
       <Services />
       <Projects />
-      <Features />
+      {/* <Features /> */}
       <Testimonials />
       <Pricing />
       <Team />

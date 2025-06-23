@@ -3,6 +3,7 @@ import styled from 'styled-components';
 function Features() {
   return (
     <FeaturesContainer>
+      <SectionTitle>Seemsless Features</SectionTitle>
       <FeatureGrid>
         <FeatureVideo>
           <video 
@@ -70,6 +71,14 @@ const FeatureGrid = styled.div`
     align-items: center;
   }
 `;
+
+const SectionTitle = styled.h2`
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+`;
+
 
 const FeatureVideo = styled.div`
   position: relative;
