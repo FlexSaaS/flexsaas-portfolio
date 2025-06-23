@@ -165,7 +165,7 @@ export default Projects;
 
 const ProjectsContainer = styled.section`
   padding: 8rem 5% 4rem; 
-  background: #fff;
+  background:rgba(246, 246, 243, 0.68);
   
   @media (max-width: 768px) {
     padding: 5rem 5% 3rem;
