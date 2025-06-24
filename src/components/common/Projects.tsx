@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { FiExternalLink, FiX } from 'react-icons/fi';
-import { useSearchParams } from 'react-router-dom';
+import { FiExternalLink, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { useSearchParams } from "react-router-dom";
 
 // Type definitions
 type Project = {
@@ -13,7 +13,7 @@ type Project = {
   category: string;
 };
 
-type ProjectCategory = 'all' | 'portfolios' | 'bookings';
+type ProjectCategory = "all" | "portfolios" | "bookings";
 
 type ProjectsData = {
   portfolios: Project[];
@@ -28,7 +28,7 @@ const projects: ProjectsData = {
       description: "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
       image: "/construction-fallback.png",
       url: "https://clientproto.netlify.app/",
-      category: "Construction"
+      category: "Construction",
     },
     {
       id: 2,
@@ -36,7 +36,7 @@ const projects: ProjectsData = {
       description: "Clean, professional portfolio for construction, plumbing and electrical services with service area maps.",
       image: "/AnyFix.png",
       url: "https://anyfixproto.netlify.app/",
-      category: "Electrical, Construction and Plumbing"
+      category: "Electrical, Construction and Plumbing",
     },
   ],
   bookings: [
@@ -46,7 +46,7 @@ const projects: ProjectsData = {
       description: "Booking system with stylist selection, service packages, and online payments.",
       image: "/Masaf.png",
       url: "https://masaf-hairstylish.netlify.app/",
-      category: "Hair Salon"
+      category: "Hair Salon",
     },
     {
       id: 4,
@@ -54,89 +54,110 @@ const projects: ProjectsData = {
       description: "Mobile-friendly booking system with loyalty program integration.",
       image: "/barber-booking.jpg",
       url: "https://manage-bookings.netlify.app/",
-      category: "Barber"
-    }
-  ]
+      category: "Barber",
+    },
+  ],
 };
 
 function Projects() {
-    const [searchParams] = useSearchParams();
-    const urlCategory = searchParams.get('category') as ProjectCategory | null;
-    
-    const [activeProject, setActiveProject] = useState<Project | null>(null);
-    const [activeCategory, setActiveCategory] = useState<ProjectCategory>(
-      urlCategory && ['portfolios', 'bookings'].includes(urlCategory) ? urlCategory : 'all'
-    );
-  
-    useEffect(() => {
-        if (urlCategory && ['portfolios', 'bookings'].includes(urlCategory)) {
-          setActiveCategory(urlCategory);
-        }
-      }, [urlCategory]);
+  const [searchParams] = useSearchParams();
+  const urlCategory = searchParams.get("category") as ProjectCategory | null;
+
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>(
+    urlCategory && ["portfolios", "bookings"].includes(urlCategory) ? urlCategory : "all"
+  );
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    if (urlCategory && ["portfolios", "bookings"].includes(urlCategory)) {
+      setActiveCategory(urlCategory);
+    }
+  }, [urlCategory]);
 
   const openModal = (project: Project) => {
     setActiveProject(project);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setActiveProject(null);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   };
 
-  const filteredProjects = activeCategory === 'all' 
-  ? [...projects.portfolios, ...projects.bookings]
-  : activeCategory === 'portfolios' 
-    ? projects.portfolios 
-    : projects.bookings;
+  const toggleDescription = (projectId: number) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [projectId]: !prev[projectId],
+    }));
+  };
+
+  const filteredProjects =
+    activeCategory === "all"
+      ? [...projects.portfolios, ...projects.bookings]
+      : activeCategory === "portfolios"
+      ? projects.portfolios
+      : projects.bookings;
 
   return (
     <ProjectsContainer>
       <SectionHeader>
         <SectionTitle>Our Work</SectionTitle>
         <SectionSubtitle>Explore projects we've created for our clients</SectionSubtitle>
-        
+
         <CategoryFilters>
-          <CategoryButton 
-            active={activeCategory === 'all'} 
-            onClick={() => setActiveCategory('all')}
-          >
+          <CategoryButton active={activeCategory === "all"} onClick={() => setActiveCategory("all")}>
             All Projects
           </CategoryButton>
-          <CategoryButton 
-            active={activeCategory === 'portfolios'} 
-            onClick={() => setActiveCategory('portfolios')}
-          >
+          <CategoryButton active={activeCategory === "portfolios"} onClick={() => setActiveCategory("portfolios")}>
             Portfolio Sites
           </CategoryButton>
-          <CategoryButton 
-            active={activeCategory === 'bookings'} 
-            onClick={() => setActiveCategory('bookings')}
-          >
+          <CategoryButton active={activeCategory === "bookings"} onClick={() => setActiveCategory("bookings")}>
             Booking Systems
           </CategoryButton>
         </CategoryFilters>
       </SectionHeader>
 
       <ProjectsGrid>
-        {filteredProjects.map(project => (
-          <ProjectCard key={project.id}>
-            <ProjectImage>
-              <img src={project.image} alt={project.title} />
-              <Overlay onClick={() => openModal(project)}>
-                <ViewButton>Preview Project</ViewButton>
-              </Overlay>
-            </ProjectImage>
-            <ProjectInfo>
-              <ProjectCategory>{project.category}</ProjectCategory>
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <ProjectDescription>{project.description}</ProjectDescription>
-              <ViewButton onClick={() => openModal(project)}>
-                <FiExternalLink /> View Live
-              </ViewButton>
-            </ProjectInfo>
-          </ProjectCard>
-        ))}
+        {filteredProjects.map((project) => {
+          const isExpanded = expandedCards[project.id] || false;
+          const shouldTruncate = project.description.length > 200;
+          const displayText = isExpanded ? project.description : shouldTruncate ? `${project.description.substring(0, 200)}...` : project.description;
+
+          return (
+            <ProjectCard key={project.id}>
+              <ProjectImage>
+                <img src={project.image} alt={project.title} />
+                <Overlay onClick={() => openModal(project)}>
+                  <ViewButton>Preview Project</ViewButton>
+                </Overlay>
+              </ProjectImage>
+              <ProjectInfo>
+                <ProjectCategory>{project.category}</ProjectCategory>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>
+                  {displayText}
+                  {shouldTruncate && (
+                    <ExpandButton onClick={() => toggleDescription(project.id)}>
+                      {isExpanded ? (
+                        <>
+                          <FiChevronUp /> See less
+                        </>
+                      ) : (
+                        <>
+                          <FiChevronDown /> See more
+                        </>
+                      )}
+                    </ExpandButton>
+                  )}
+                </ProjectDescription>
+                <ViewButton onClick={() => openModal(project)}>
+                  <FiExternalLink /> View Live
+                </ViewButton>
+              </ProjectInfo>
+            </ProjectCard>
+          );
+        })}
       </ProjectsGrid>
 
       {activeProject && (
@@ -149,11 +170,7 @@ function Projects() {
               <ModalTitle>{activeProject.title}</ModalTitle>
               <ModalCategory>{activeProject.category}</ModalCategory>
             </ModalHeader>
-            <ProjectIframe 
-              src={activeProject.url} 
-              title={activeProject.title}
-              loading="lazy"
-            />
+            <ProjectIframe src={activeProject.url} title={activeProject.title} loading="lazy" />
           </ModalContainer>
         </ModalOverlay>
       )}
@@ -164,9 +181,9 @@ function Projects() {
 export default Projects;
 
 const ProjectsContainer = styled.section`
-  padding: 8rem 5% 4rem; 
-  background:rgba(246, 246, 243, 0.68);
-  
+  padding: 8rem 5% 4rem;
+  background: rgba(246, 246, 243, 0.68);
+
   @media (max-width: 768px) {
     padding: 5rem 5% 3rem;
   }
@@ -181,7 +198,7 @@ const SectionTitle = styled.h2`
   font-size: 2.5rem;
   color: #333;
   margin-bottom: 1rem;
-  
+
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -208,17 +225,17 @@ interface CategoryButtonProps {
 
 const CategoryButton = styled.button<CategoryButtonProps>`
   padding: 0.6rem 1.2rem;
-  background: ${({ active }) => active ? '#0066ff' : 'transparent'};
-  color: ${({ active }) => active ? 'white' : '#555'};
-  border: 1px solid ${({ active }) => active ? '#0066ff' : '#ddd'};
+  background: ${({ active }) => (active ? "#0066ff" : "transparent")};
+  color: ${({ active }) => (active ? "white" : "#555")};
+  border: 1px solid ${({ active }) => (active ? "#0066ff" : "#ddd")};
   border-radius: 30px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
-  
+
   &:hover {
-    background: ${({ active }) => active ? '#0052cc' : '#f5f5f5'};
-    border-color: ${({ active }) => active ? '#0052cc' : '#ccc'};
+    background: ${({ active }) => (active ? "#0052cc" : "#f5f5f5")};
+    border-color: ${({ active }) => (active ? "#0052cc" : "#ccc")};
   }
 `;
 
@@ -226,7 +243,7 @@ const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -238,7 +255,9 @@ const ProjectCard = styled.div`
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  
+  display: flex;
+  flex-direction: column;
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -249,14 +268,14 @@ const ProjectImage = styled.div`
   position: relative;
   height: 250px;
   overflow: hidden;
-  
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s;
   }
-  
+
   &:hover img {
     transform: scale(1.05);
   }
@@ -275,7 +294,7 @@ const Overlay = styled.div`
   opacity: 0;
   transition: opacity 0.3s;
   cursor: pointer;
-  
+
   ${ProjectCard}:hover & {
     opacity: 1;
   }
@@ -283,6 +302,9 @@ const Overlay = styled.div`
 
 const ProjectInfo = styled.div`
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 `;
 
 const ProjectCategory = styled.span`
@@ -304,8 +326,30 @@ const ProjectTitle = styled.h3`
 
 const ProjectDescription = styled.p`
   color: #666;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.6;
+  flex-grow: 1;
+`;
+
+const ExpandButton = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #0066ff;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 0.9rem;
+
+  &:hover {
+    color: #0052cc;
+    text-decoration: underline;
+  }
+
+  svg {
+    font-size: 0.8rem;
+  }
 `;
 
 const ViewButton = styled.button`
@@ -320,7 +364,9 @@ const ViewButton = styled.button`
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s;
-  
+  margin-top: auto;
+  align-self: flex-start;
+
   &:hover {
     background: #0052cc;
   }

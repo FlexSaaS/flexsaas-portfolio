@@ -16,9 +16,12 @@ function Pricing() {
         "Contact Form",
         "Basic SEO",
         "Mobile Responsive",
-        "Email Support"
+        "Email Support",
+        "1 Year Hosting",
+        "Monthly Backups",
+        "Basic Analytics",
       ],
-      cta: "Get Started"
+      cta: "Get Started",
     },
     {
       id: 2,
@@ -30,10 +33,14 @@ function Pricing() {
         "Client Testimonials",
         "Advanced SEO",
         "Gallery System",
-        "Priority Support"
+        "Priority Support",
+        "2 Years Hosting",
+        "Weekly Backups",
+        "Advanced Analytics",
+        "Social Media Integration",
       ],
       cta: "Get Started",
-      highlighted: true
+      highlighted: true,
     },
     {
       id: 3,
@@ -45,9 +52,15 @@ function Pricing() {
         "Review System",
         "Client Portal",
         "Custom Domain",
+        "24/7 Support",
+        "3 Years Hosting",
+        "Daily Backups",
+        "Premium Analytics",
+        "Custom Integrations",
+        "Dedicated Account Manager",
       ],
-      cta: "Contact Sales"
-    }
+      cta: "Get Started",
+    },
   ];
 
   // Booking system pricing plans
@@ -62,9 +75,11 @@ function Pricing() {
         "Calendar Management",
         "Email Reminders",
         "Basic Reporting",
-        "Email Support"
+        "Email Support",
+        "Up to 5 Staff Members",
+        "Basic Client Management",
       ],
-      cta: "Get Started"
+      cta: "Get Started",
     },
     {
       id: 2,
@@ -76,10 +91,13 @@ function Pricing() {
         "Payment Processing",
         "SMS Reminders",
         "Client Management",
-        "Priority Support"
+        "Priority Support",
+        "Up to 15 Staff Members",
+        "Advanced Reporting",
+        "Custom Booking Forms",
       ],
       cta: "Get Started",
-      highlighted: true
+      highlighted: true,
     },
     {
       id: 3,
@@ -91,10 +109,14 @@ function Pricing() {
         "Multi-staff Scheduling",
         "Inventory Management",
         "Custom Branding",
-        "API Access"
+        "API Access",
+        "Unlimited Staff Members",
+        "White-label Options",
+        "Custom Development",
+        "Dedicated Support",
       ],
-      cta: "Contact Sales"
-    }
+      cta: "Get Started",
+    },
   ];
 
   const activePlans = activeTab === "portfolio" ? portfolioPlans : bookingPlans;
@@ -105,27 +127,23 @@ function Pricing() {
       <SectionSubtitle>Choose the perfect plan for your business needs</SectionSubtitle>
 
       <ServiceTabs>
-        <ServiceTab 
-          active={activeTab === "portfolio"} 
-          onClick={() => setActiveTab("portfolio")}
-        >
+        <ServiceTab active={activeTab === "portfolio"} onClick={() => setActiveTab("portfolio")}>
           Portfolio Websites
         </ServiceTab>
-        <ServiceTab 
-          active={activeTab === "booking"} 
-          onClick={() => setActiveTab("booking")}
-        >
+        <ServiceTab active={activeTab === "booking"} onClick={() => setActiveTab("booking")}>
           Booking Systems
         </ServiceTab>
       </ServiceTabs>
-
 
       <PricingGrid>
         {activePlans.map((plan) => (
           <PricingCard key={plan.id} highlighted={plan.highlighted}>
             <ServiceBadge>{plan.badge}</ServiceBadge>
             <PlanTitle>{plan.title}</PlanTitle>
-            <PlanPrice>{plan.price}<span>/mo</span></PlanPrice>
+            <PlanPrice>
+              {plan.price}
+              <span>/mo</span>
+            </PlanPrice>
             <FeatureList>
               {plan.features.map((feature, index) => (
                 <FeatureItem key={index}>{feature}</FeatureItem>
@@ -178,13 +196,12 @@ const ServiceTab = styled.button<{ active?: boolean }>`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom : 25px;
+  margin-bottom: 25px;
 
   &:hover {
     background: ${({ active }) => (active ? "#472196" : "#f0f0f0")};
   }
 `;
-
 
 const PricingGrid = styled.div`
   display: grid;
@@ -202,6 +219,9 @@ const PricingCard = styled.div<{ highlighted?: boolean }>`
   border: 1px solid #e0e0e0;
   transition: all 0.3s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
     transform: translateY(-6px);
@@ -215,6 +235,7 @@ const PricingCard = styled.div<{ highlighted?: boolean }>`
     transform: scale(1.02);
     
     &::before {
+      content: 'Most Popular';
       position: absolute;
       top: -12px;
       right: 20px;
@@ -262,14 +283,33 @@ const PlanPrice = styled.div`
 const FeatureList = styled.ul`
   list-style: none;
   padding: 0;
-  margin-bottom: 2rem;
-  min-height: 200px;
+  margin: 0 0 1.5rem 0;
+  overflow-y: auto;
+  max-height: 250px;
+  flex-grow: 1;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 6px;
+  }
 `;
 
 const FeatureItem = styled.li`
   padding: 0.7rem 0;
   border-bottom: 1px solid #eee;
   color: #555;
+  text-align: left;
+  margin: 0 0.5rem;
 `;
 
 const PrimaryButton = styled.button`
@@ -283,6 +323,7 @@ const PrimaryButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: auto;
 
   &:hover {
     background-color: #472196;
