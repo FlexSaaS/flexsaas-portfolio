@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 function Team() {
   return (
-    <TeamContainer>
+    <TeamContainer id="team">
       {/* <SectionTitle>Meet the Team</SectionTitle> */}
       <TeamGrid>
         <TeamMember>
@@ -12,31 +12,25 @@ function Team() {
           </MemberImage>
           <MemberName>Ebenezer Boakye</MemberName>
           <MemberRole>Co-Founder & Developer</MemberRole>
-          <MemberBio>
-            Full-stack developer with a passion for creating intuitive user experiences.
-          </MemberBio>
+          <MemberBio>Full-stack developer with a passion for creating intuitive user experiences.</MemberBio>
         </TeamMember>
-        
+
         <TeamMember>
           <MemberImage>
             <img src="/Pierre.jpeg" alt="Pierre Louis" />
           </MemberImage>
           <MemberName>Pierre Louis</MemberName>
           <MemberRole>Co-Founder & Designer</MemberRole>
-          <MemberBio>
-            UX/UI designer focused on creating beautiful, functional interfaces.
-          </MemberBio>
+          <MemberBio>UX/UI designer focused on creating beautiful, functional interfaces.</MemberBio>
         </TeamMember>
-        
+
         <TeamMember>
           <MemberImage>
             <img src="/Safo.jpg" alt="Samson Safo" />
           </MemberImage>
           <MemberName>Samson Safo</MemberName>
           <MemberRole>Co-Founder & Marketer</MemberRole>
-          <MemberBio>
-            Growth marketer who helps businesses connect with their ideal customers.
-          </MemberBio>
+          <MemberBio>Growth marketer who helps businesses connect with their ideal customers.</MemberBio>
         </TeamMember>
       </TeamGrid>
     </TeamContainer>

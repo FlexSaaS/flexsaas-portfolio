@@ -10,18 +10,23 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const scrollToTeam = () => {
+    const teamSection = document.getElementById("team");
+    if (teamSection) {
+      teamSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <NavContainer>
       <NavLogo to="/">FlexSaaS</NavLogo>
-      
-      <Hamburger onClick={toggleMenu}>
-        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-      </Hamburger>
-      
+
+      <Hamburger onClick={toggleMenu}>{isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}</Hamburger>
+
       <NavLinks isOpen={isOpen}>
         <NavLink to="/projects?category=portfolios">Building Services</NavLink>
         <NavLink to="/projects?category=bookings">Hair & Beauty Booking</NavLink>
-        <NavLink to="/about">About Us</NavLink>
+        <NavButton onClick={scrollToTeam}>Meet the Team</NavButton>
         <CTAButton to="/contact">Get Started</CTAButton>
       </NavLinks>
     </NavContainer>
@@ -41,7 +46,7 @@ const NavContainer = styled.nav`
   z-index: 100;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   height: 60px; // Fixed height
-  
+
   @media (max-width: 768px) {
     height: 50px;
   }
@@ -52,7 +57,7 @@ const NavLogo = styled(Link)`
   font-weight: 700;
   color: #333;
   text-decoration: none;
-  
+
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
@@ -62,7 +67,7 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
   display: flex;
   gap: 2rem;
   align-items: center;
-  
+
   @media (max-width: 768px) {
     position: fixed;
     top: 60px; // Matches NavBar height
@@ -74,8 +79,8 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
     padding: 2rem 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    transform: ${({ isOpen }) => isOpen ? 'translateY(0)' : 'translateY(-150%)'};
-    opacity: ${({ isOpen }) => isOpen ? '1' : '0'};
+    transform: ${({ isOpen }) => (isOpen ? "translateY(0)" : "translateY(-150%)")};
+    opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
     z-index: 99;
   }
 `;
@@ -85,11 +90,34 @@ const NavLink = styled(Link)`
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
-  
+
   &:hover {
     color: #0066ff;
   }
-  
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+`;
+
+const NavButton = styled.button`
+  background: none;
+  border: none;
+  color: #555;
+  text-decoration: none; // Added to match NavLink
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-family: inherit;
+  font-size: 1rem; // Explicitly set to match NavLink
+  padding: 0;
+  margin: 0; // Reset margin
+
+  &:hover {
+    color: #0066ff;
+  }
+
   @media (max-width: 768px) {
     padding: 0.5rem 0;
     font-size: 1.2rem;
