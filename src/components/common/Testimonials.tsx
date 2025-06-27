@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 import { useState, useRef } from 'react';
 
-// Type definition for testimonials
 type Testimonial = {
   id: number;
   quote: string;
   name: string;
   company: string;
   image: string;
-  rating: number; // 1-5
+  rating: number;
   category: 'portfolio' | 'booking';
 };
 
-// Testimonial data array
 const testimonials: Testimonial[] = [
   {
     id: 1,
@@ -28,7 +26,7 @@ const testimonials: Testimonial[] = [
     quote: "The booking system has saved me hours each week. Clients can book anytime, and the automated reminders have virtually eliminated no-shows.",
     name: "Sarah Miller",
     company: "Miller Hair Studio",
-    image: "/stylist.jpg",
+    image: "/SarahMiller.jpeg",
     rating: 5,
     category: 'booking'
   },
@@ -37,7 +35,7 @@ const testimonials: Testimonial[] = [
     quote: "The professional design and easy content management system has transformed how we showcase our work to potential clients.",
     name: "David Wilson",
     company: "Wilson Electric",
-    image: "/electrician.jpg",
+    image: "/DavidWilson.jpeg",
     rating: 4,
     category: 'portfolio'
   },
@@ -46,7 +44,7 @@ const testimonials: Testimonial[] = [
     quote: "Our appointment bookings have increased by 40% since implementing this system. The interface is so user-friendly for both us and our clients.",
     name: "Emily Chen",
     company: "Chen Dental",
-    image: "/dentist.jpg",
+    image: "/EmilyChen.jpeg",
     rating: 5,
     category: 'booking'
   },
@@ -55,7 +53,7 @@ const testimonials: Testimonial[] = [
     quote: "The portfolio website has helped us win several high-profile contracts. The image galleries load quickly and look stunning on all devices.",
     name: "Robert Taylor",
     company: "Taylor Architects",
-    image: "/architect.jpg",
+    image: "/RobertTaylor.jpeg",
     rating: 4,
     category: 'portfolio'
   }
@@ -64,35 +62,31 @@ const testimonials: Testimonial[] = [
 function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  
-  // Determine how many cards to show based on screen width
+
   const getVisibleCards = () => {
     if (typeof window === 'undefined') return 3;
     return window.innerWidth < 768 ? 1 : 3;
   };
-  
+
   const visibleCards = getVisibleCards();
   const maxIndex = Math.max(0, testimonials.length - visibleCards);
-  
+
   const scrollToIndex = (index: number) => {
     if (!scrollContainerRef.current) return;
-    
-    // Clamp the index between 0 and maxIndex
+
     const newIndex = Math.max(0, Math.min(index, maxIndex));
     setCurrentIndex(newIndex);
-    
+
     const container = scrollContainerRef.current;
-    const card = container.children[0] as HTMLElement;
-    const cardWidth = card.offsetWidth + parseInt(getComputedStyle(card).marginRight);
-    
+    const card = container.querySelector('.testimonial-card') as HTMLElement;
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth + 32; // 32px is the grid gap (2rem)
     container.scrollTo({
       left: newIndex * cardWidth,
       behavior: 'smooth'
     });
   };
-  
-  const next = () => scrollToIndex(currentIndex + 1);
-  const prev = () => scrollToIndex(currentIndex - 1);
 
   return (
     <TestimonialsContainer>
@@ -100,19 +94,22 @@ function Testimonials() {
         <SectionTitle>Client Success Stories</SectionTitle>
         <SectionSubtitle>Hear from businesses who've transformed their online presence</SectionSubtitle>
       </SectionHeader>
-      
+
       <TestimonialsWrapper>
-        <NavigationButton 
-          onClick={prev} 
+        <NavigationButton
+          onClick={() => scrollToIndex(currentIndex - 1)}
           disabled={currentIndex === 0}
-          aria-label="Previous testimonials"
+          style={{ left: '-60px' }}
         >
           &larr;
         </NavigationButton>
-        
+
         <TestimonialGrid ref={scrollContainerRef}>
+          {/* Left Spacer */}
+          <Spacer />
+
           {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.id}>
+            <TestimonialCard key={testimonial.id} className="testimonial-card">
               <StarsContainer>
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} filled={i < testimonial.rating}>★</Star>
@@ -126,17 +123,22 @@ function Testimonials() {
                 <AuthorInfo>
                   <AuthorName>{testimonial.name}</AuthorName>
                   <AuthorCompany>{testimonial.company}</AuthorCompany>
-                  <AuthorCategory>{testimonial.category === 'portfolio' ? 'Portfolio Client' : 'Booking Client'}</AuthorCategory>
+                  <AuthorCategory>
+                    {testimonial.category === 'portfolio' ? 'Portfolio Client' : 'Booking Client'}
+                  </AuthorCategory>
                 </AuthorInfo>
               </TestimonialAuthor>
             </TestimonialCard>
           ))}
+
+          {/* Right Spacer */}
+          <Spacer />
         </TestimonialGrid>
-        
-        <NavigationButton 
-          onClick={next} 
+
+        <NavigationButton
+          onClick={() => scrollToIndex(currentIndex + 1)}
           disabled={currentIndex >= maxIndex}
-          aria-label="Next testimonials"
+          style={{ right: '-60px' }}
         >
           &rarr;
         </NavigationButton>
@@ -163,7 +165,7 @@ const SectionTitle = styled.h2`
   font-size: 2.5rem;
   color: #333;
   margin-bottom: 1rem;
-  
+
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -184,48 +186,29 @@ const TestimonialsWrapper = styled.div`
 `;
 
 const NavigationButton = styled.button<{ disabled: boolean }>`
+  position: absolute;
+  z-index: 10;
   background: white;
   border: none;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 1.5rem;
-  color: ${({ disabled }) => disabled ? '#ccc' : '#0066ff'};
-  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  color: ${({ disabled }) => (disabled ? '#ccc' : '#0066ff')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  position: absolute;
-  z-index: 10;
-  
+
   &:hover:not(:disabled) {
     background: #0066ff;
     color: white;
     transform: scale(1.1);
   }
-  
-  &:first-child {
-    left: -25px;
-  }
-  
-  &:last-child {
-    right: -25px;
-  }
-  
+
   @media (max-width: 768px) {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
-    
-    &:first-child {
-      left: -15px;
-    }
-    
-    &:last-child {
-      right: -15px;
-    }
   }
 `;
 
@@ -238,14 +221,17 @@ const TestimonialGrid = styled.div`
   padding: 1rem 0;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
+`;
 
-  /* Prevent cards from stretching too wide on large screens */
-  @media (min-width: 1200px) {
-    justify-content: center;
+const Spacer = styled.div`
+  flex: 0 0 30px;
+
+  @media (min-width: 768px) {
+    flex: 0 0 60px;
   }
 `;
 
@@ -253,26 +239,24 @@ const TestimonialCard = styled.div`
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   scroll-snap-align: start;
   flex: 0 0 auto;
-  
- 
-  width: 85vw; 
-  max-width: 350px; 
-  min-width: 280px; 
+  width: 85vw;
+  max-width: 350px;
+  min-width: 280px;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   }
-  
+
   @media (min-width: 768px) {
     width: 45vw;
     max-width: 380px;
   }
-  
+
   @media (min-width: 1024px) {
     width: 30vw;
     max-width: 400px;
@@ -284,7 +268,7 @@ const StarsContainer = styled.div`
 `;
 
 const Star = styled.span<{ filled: boolean }>`
-  color: ${({ filled }) => filled ? '#FFD700' : '#e0e0e0'};
+  color: ${({ filled }) => (filled ? '#FFD700' : '#e0e0e0')};
   font-size: 1.2rem;
   margin-right: 0.2rem;
 `;
@@ -296,7 +280,7 @@ const TestimonialText = styled.p`
   margin-bottom: 2rem;
   font-style: italic;
   position: relative;
-  
+
   &::before {
     content: '"';
     font-size: 3rem;
@@ -320,7 +304,7 @@ const AuthorImage = styled.div`
   overflow: hidden;
   margin-right: 1.5rem;
   border: 3px solid rgba(0, 102, 255, 0.1);
-  
+
   img {
     width: 100%;
     height: 100%;
