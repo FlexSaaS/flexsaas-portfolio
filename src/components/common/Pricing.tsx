@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import PurchaseButton from "./purchaseButton";
 
 function Pricing() {
   const [activeTab, setActiveTab] = useState("portfolio");
@@ -11,6 +12,7 @@ function Pricing() {
       title: "Basic Portfolio",
       price: "£21",
       badge: "Tier 1 - Basic",
+      priceId: "price_1RdDvH2a7jzpskfovW9dn9A9",
       features: [
         "5 Project Showcases",
         "Contact Form",
@@ -28,6 +30,7 @@ function Pricing() {
       title: "Professional",
       price: "£49",
       badge: "Tier 2 - Most Popular",
+      priceId: "price_1Rf5gW2a7jzpskfo1al9rslA",
       features: [
         "Unlimited Projects",
         "Client Testimonials",
@@ -47,6 +50,7 @@ function Pricing() {
       title: "Enterprise",
       price: "£89",
       badge: "Tier 3 - Professional Features",
+      priceId: "price_1Rf5h62a7jzpskfo7xPNtKdI",
       features: [
         "All Professional Features",
         "Review System",
@@ -70,6 +74,7 @@ function Pricing() {
       title: "Essentials",
       price: "£59",
       badge: "Tier 1 - Basic",
+      priceId: "price_1Rf5hR2a7jzpskfou1EYRpQ3",
       features: [
         "Online Scheduling",
         "Calendar Management",
@@ -86,6 +91,7 @@ function Pricing() {
       title: "Professional",
       price: "£79",
       badge: "Tier 2 - Most Popular",
+      priceId: "price_1Rf5hg2a7jzpskfoWNV8qmDQ",
       features: [
         "All Essentials Features",
         "Payment Processing",
@@ -104,6 +110,7 @@ function Pricing() {
       title: "Enterprise",
       price: "£129",
       badge: "Tier 3 - Professional Features",
+      priceId: "price_1Rf5hu2a7jzpskfoprrvbJ6y",
       features: [
         "All Professional Features",
         "Multi-staff Scheduling",
@@ -124,13 +131,21 @@ function Pricing() {
   return (
     <PricingSection>
       <SectionTitle>Simple, Transparent Pricing</SectionTitle>
-      <SectionSubtitle>Choose the perfect plan for your business needs</SectionSubtitle>
+      <SectionSubtitle>
+        Choose the perfect plan for your business needs
+      </SectionSubtitle>
 
       <ServiceTabs>
-        <ServiceTab active={activeTab === "portfolio"} onClick={() => setActiveTab("portfolio")}>
+        <ServiceTab
+          active={activeTab === "portfolio"}
+          onClick={() => setActiveTab("portfolio")}
+        >
           Portfolio Websites
         </ServiceTab>
-        <ServiceTab active={activeTab === "booking"} onClick={() => setActiveTab("booking")}>
+        <ServiceTab
+          active={activeTab === "booking"}
+          onClick={() => setActiveTab("booking")}
+        >
           Booking Systems
         </ServiceTab>
       </ServiceTabs>
@@ -149,7 +164,7 @@ function Pricing() {
                 <FeatureItem key={index}>{feature}</FeatureItem>
               ))}
             </FeatureList>
-            <PrimaryButton>{plan.cta}</PrimaryButton>
+            <PurchaseButton priceId={plan.priceId} />
           </PricingCard>
         ))}
       </PricingGrid>
@@ -310,23 +325,4 @@ const FeatureItem = styled.li`
   color: #555;
   text-align: left;
   margin: 0 0.5rem;
-`;
-
-const PrimaryButton = styled.button`
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #5b21b6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: auto;
-
-  &:hover {
-    background-color: #472196;
-    transform: translateY(-2px);
-  }
 `;
