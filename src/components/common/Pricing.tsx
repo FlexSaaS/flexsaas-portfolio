@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import PurchaseButton from "./purchaseButton";
+import PurchaseButton from "./PurchaseButton";
 
 function Pricing() {
   const [activeTab, setActiveTab] = useState("portfolio");

@@ -4,7 +4,7 @@ import { auth } from "../../firebase";
 import { useDatabase } from "../../db/DatabaseContext";
 import styled, { keyframes } from "styled-components";
 
-export default function PurchaseButton({ priceId }: { priceId: string }) {
+function PurchaseButton({ priceId }: { priceId: string }) {
   const [loading, setLoading] = useState(false);
   const db = useDatabase();
 
@@ -29,6 +29,8 @@ export default function PurchaseButton({ priceId }: { priceId: string }) {
     </Button>
   );
 }
+
+export default PurchaseButton;
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }

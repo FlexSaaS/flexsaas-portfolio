@@ -1,6 +1,11 @@
-import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { FiExternalLink, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import styled from "styled-components";
+import { useEffect, useState } from "react";
+import {
+  FiExternalLink,
+  FiX,
+  FiChevronDown,
+  FiChevronUp,
+} from "react-icons/fi";
 import { useSearchParams } from "react-router-dom";
 
 // Type definitions
@@ -25,7 +30,8 @@ const projects: ProjectsData = {
     {
       id: 1,
       title: "Johnson Construction",
-      description: "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
+      description:
+        "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
       image: "/construction-fallback.png",
       url: "https://clientproto.netlify.app/",
       category: "Construction",
@@ -33,7 +39,8 @@ const projects: ProjectsData = {
     {
       id: 2,
       title: "Anyfix Limited",
-      description: "Clean, professional portfolio for construction, plumbing and electrical services with service area maps.",
+      description:
+        "Clean, professional portfolio for construction, plumbing and electrical services with service area maps.",
       image: "/AnyFix.png",
       url: "https://anyfixproto.netlify.app/",
       category: "Electrical, Construction and Plumbing",
@@ -43,7 +50,8 @@ const projects: ProjectsData = {
     {
       id: 3,
       title: "Masaf Hair Studio",
-      description: "Booking system with stylist selection, service packages, and online payments.",
+      description:
+        "Booking system with stylist selection, service packages, and online payments.",
       image: "/Masaf.png",
       url: "https://masaf-hairstylish.netlify.app/",
       category: "Hair Salon",
@@ -51,7 +59,8 @@ const projects: ProjectsData = {
     {
       id: 4,
       title: "Urban Barbers",
-      description: "Mobile-friendly booking system with loyalty program integration.",
+      description:
+        "Mobile-friendly booking system with loyalty program integration.",
       image: "/barber-booking.jpg",
       url: "https://manage-bookings.netlify.app/",
       category: "Barber",
@@ -65,9 +74,13 @@ function Projects() {
 
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>(
-    urlCategory && ["portfolios", "bookings"].includes(urlCategory) ? urlCategory : "all"
+    urlCategory && ["portfolios", "bookings"].includes(urlCategory)
+      ? urlCategory
+      : "all"
   );
-  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>(
+    {}
+  );
 
   useEffect(() => {
     if (urlCategory && ["portfolios", "bookings"].includes(urlCategory)) {
@@ -103,16 +116,27 @@ function Projects() {
     <ProjectsContainer>
       <SectionHeader>
         <SectionTitle>Our Work</SectionTitle>
-        <SectionSubtitle>Explore projects we've created for our clients</SectionSubtitle>
+        <SectionSubtitle>
+          Explore projects we've created for our clients
+        </SectionSubtitle>
 
         <CategoryFilters>
-          <CategoryButton active={activeCategory === "all"} onClick={() => setActiveCategory("all")}>
+          <CategoryButton
+            active={activeCategory === "all"}
+            onClick={() => setActiveCategory("all")}
+          >
             All Projects
           </CategoryButton>
-          <CategoryButton active={activeCategory === "portfolios"} onClick={() => setActiveCategory("portfolios")}>
+          <CategoryButton
+            active={activeCategory === "portfolios"}
+            onClick={() => setActiveCategory("portfolios")}
+          >
             Portfolio Sites
           </CategoryButton>
-          <CategoryButton active={activeCategory === "bookings"} onClick={() => setActiveCategory("bookings")}>
+          <CategoryButton
+            active={activeCategory === "bookings"}
+            onClick={() => setActiveCategory("bookings")}
+          >
             Booking Systems
           </CategoryButton>
         </CategoryFilters>
@@ -122,7 +146,11 @@ function Projects() {
         {filteredProjects.map((project) => {
           const isExpanded = expandedCards[project.id] || false;
           const shouldTruncate = project.description.length > 200;
-          const displayText = isExpanded ? project.description : shouldTruncate ? `${project.description.substring(0, 200)}...` : project.description;
+          const displayText = isExpanded
+            ? project.description
+            : shouldTruncate
+            ? `${project.description.substring(0, 200)}...`
+            : project.description;
 
           return (
             <ProjectCard key={project.id}>
@@ -170,7 +198,11 @@ function Projects() {
               <ModalTitle>{activeProject.title}</ModalTitle>
               <ModalCategory>{activeProject.category}</ModalCategory>
             </ModalHeader>
-            <ProjectIframe src={activeProject.url} title={activeProject.title} loading="lazy" />
+            <ProjectIframe
+              src={activeProject.url}
+              title={activeProject.title}
+              loading="lazy"
+            />
           </ModalContainer>
         </ModalOverlay>
       )}
@@ -413,7 +445,7 @@ const CloseButton = styled.button`
   cursor: pointer;
   z-index: 1001;
   transition: background 0.3s;
-  
+
   &:hover {
     background: rgba(0, 0, 0, 0.7);
   }
