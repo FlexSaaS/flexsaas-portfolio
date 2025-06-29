@@ -24,6 +24,7 @@ function Navbar() {
       <Hamburger onClick={toggleMenu}>{isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}</Hamburger>
 
       <NavLinks isOpen={isOpen}>
+        <NavLink to="/">Home</NavLink>
         <NavLink to="/projects?category=portfolios">Building Services</NavLink>
         <NavLink to="/projects?category=bookings">Hair & Beauty Booking</NavLink>
         <NavButton onClick={scrollToTeam}>Meet the Team</NavButton>
