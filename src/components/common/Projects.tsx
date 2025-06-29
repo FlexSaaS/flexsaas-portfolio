@@ -50,7 +50,7 @@ const projects: ProjectsData = {
       id: 4,
       title: "Urban Barbers",
       description: "Mobile-friendly booking system with loyalty program integration.",
-      image: "/barber-booking.jpg",
+      image: "/barber-bookings.jpeg",
       url: "https://manage-bookings.netlify.app/",
       category: "Barber",
     },
