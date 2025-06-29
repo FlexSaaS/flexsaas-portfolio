@@ -85,54 +85,56 @@ function Pricing() {
   ];
 
   return (
-    <PricingSection>
-      <SectionTitle>Simple, Transparent Pricing</SectionTitle>
-      <SectionSubtitle>Choose the perfect plan for your business needs</SectionSubtitle>
+    <div id="pricing">
+      <PricingSection>
+        <SectionTitle>Simple, Transparent Pricing</SectionTitle>
+        <SectionSubtitle>Choose the perfect plan for your business needs</SectionSubtitle>
 
-      <ServiceSection>
-        <ServiceHeader>Portfolio Websites</ServiceHeader>
-        <PricingGrid>
-          {portfolioPlans.map((plan) => (
-            <PricingCard key={plan.id} highlighted={plan.highlighted}>
-              <ServiceBadge>{plan.badge}</ServiceBadge>
-              <PlanTitle>{plan.title}</PlanTitle>
-              <PlanPrice>
-                {plan.price}
-                <span>/mo</span>
-              </PlanPrice>
-              <FeatureList>
-                {plan.features.map((feature, index) => (
-                  <FeatureItem key={index}>{feature}</FeatureItem>
-                ))}
-              </FeatureList>
-              <PurchaseButton priceId={plan.priceId} />
-            </PricingCard>
-          ))}
-        </PricingGrid>
-      </ServiceSection>
+        <ServiceSection>
+          <ServiceHeader>Portfolio Websites</ServiceHeader>
+          <PricingGrid>
+            {portfolioPlans.map((plan) => (
+              <PricingCard key={plan.id} highlighted={plan.highlighted}>
+                <ServiceBadge>{plan.badge}</ServiceBadge>
+                <PlanTitle>{plan.title}</PlanTitle>
+                <PlanPrice>
+                  {plan.price}
+                  <span>/mo</span>
+                </PlanPrice>
+                <FeatureList>
+                  {plan.features.map((feature, index) => (
+                    <FeatureItem key={index}>{feature}</FeatureItem>
+                  ))}
+                </FeatureList>
+                <PurchaseButton priceId={plan.priceId} />
+              </PricingCard>
+            ))}
+          </PricingGrid>
+        </ServiceSection>
 
-      <ServiceSection>
-        <ServiceHeader>Booking Systems</ServiceHeader>
-        <PricingGrid>
-          {bookingPlans.map((plan) => (
-            <PricingCard key={plan.id} highlighted={plan.highlighted}>
-              <ServiceBadge>{plan.badge}</ServiceBadge>
-              <PlanTitle>{plan.title}</PlanTitle>
-              <PlanPrice>
-                {plan.price}
-                <span>/mo</span>
-              </PlanPrice>
-              <FeatureList>
-                {plan.features.map((feature, index) => (
-                  <FeatureItem key={index}>{feature}</FeatureItem>
-                ))}
-              </FeatureList>
-              <PurchaseButton priceId={plan.priceId} />
-            </PricingCard>
-          ))}
-        </PricingGrid>
-      </ServiceSection>
-    </PricingSection>
+        <ServiceSection>
+          <ServiceHeader>Booking Systems</ServiceHeader>
+          <PricingGrid>
+            {bookingPlans.map((plan) => (
+              <PricingCard key={plan.id} highlighted={plan.highlighted}>
+                <ServiceBadge>{plan.badge}</ServiceBadge>
+                <PlanTitle>{plan.title}</PlanTitle>
+                <PlanPrice>
+                  {plan.price}
+                  <span>/mo</span>
+                </PlanPrice>
+                <FeatureList>
+                  {plan.features.map((feature, index) => (
+                    <FeatureItem key={index}>{feature}</FeatureItem>
+                  ))}
+                </FeatureList>
+                <PurchaseButton priceId={plan.priceId} />
+              </PricingCard>
+            ))}
+          </PricingGrid>
+        </ServiceSection>
+      </PricingSection>
+    </div>
   );
 }
 
