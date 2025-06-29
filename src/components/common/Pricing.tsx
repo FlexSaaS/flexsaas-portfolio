@@ -173,7 +173,7 @@ const ServiceHeader = styled.h3`
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 4rem;
-  color: #5b21b6;
+  color: #0066ff;
   position: relative;
   display: inline-block;
   left: 50%;
@@ -187,7 +187,7 @@ const ServiceHeader = styled.h3`
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, #5b21b6, #8b5cf6);
+    background: linear-gradient(90deg, #0066ff, rgb(21, 75, 155));
     border-radius: 1px;
   }
 `;
@@ -220,7 +220,7 @@ const PricingCard = styled.div<{ highlighted?: boolean }>`
   ${({ highlighted }) =>
     highlighted &&
     `
-    border: 2px solid #5b21b6;
+    border: 2px solid  #0066ff;
     transform: scale(1.02);
     
     &::before {
@@ -228,7 +228,7 @@ const PricingCard = styled.div<{ highlighted?: boolean }>`
       position: absolute;
       top: -12px;
       right: 20px;
-      background: #5b21b6;
+      background: #0066ff;
       color: white;
       padding: 0.3rem 0.8rem;
       border-radius: 999px;
