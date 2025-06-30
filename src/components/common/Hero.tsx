@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import InfiniteImageScroll from "./WebsiteGallery";
 
 function Hero() {
   const scrollToServices = () => {
@@ -8,7 +9,9 @@ function Hero() {
     }
   };
 
-  function scrollToPricing(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  function scrollToPricing(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void {
     event.preventDefault();
     const pricingSection = document.getElementById("pricing");
     if (pricingSection) {
@@ -17,40 +20,63 @@ function Hero() {
   }
 
   return (
-    <div id="home">
-      <HeroContainer>
-        <HeroContent>
-          <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
-          <HeroSubtitle>
-            We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
-          </HeroSubtitle>
-          <ButtonGroup>
-            <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
-            <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
-          </ButtonGroup>
-        </HeroContent>
-      </HeroContainer>
-    </div>
+    <HeroContainer>
+      <BackgroundWrapper>
+        <InfiniteImageScroll />
+      </BackgroundWrapper>
+      <HeroContent>
+        <HeroTitle>
+          Beautiful Digital Presence for Service Professionals
+        </HeroTitle>
+        <HeroSubtitle>
+          We create stunning portfolio websites for construction professionals
+          and powerful booking systems for hair & beauty experts.
+        </HeroSubtitle>
+        <ButtonGroup>
+          <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
+          <SecondaryButton onClick={scrollToServices}>
+            Learn More
+          </SecondaryButton>
+        </ButtonGroup>
+      </HeroContent>
+    </HeroContainer>
   );
 }
 
 export default Hero;
-
+const BackgroundWrapper = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+`;
 const HeroContainer = styled.section`
-  min-height: 100vh;
+  min-height: 70vh;
+  position: relative;
   display: flex;
   align-items: center;
   padding: 0 5%;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    padding-top: 80px; /* Account for fixed navbar */
+    padding-top: 80px;
     text-align: center;
   }
 `;
 
 const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  height: 100%;
   max-width: 600px;
+  padding: 4rem;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -63,26 +89,16 @@ const HeroContent = styled.div`
 const HeroTitle = styled.h1`
   font-size: clamp(2rem, 5vw, 3.5rem);
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #404040; /* white text for contrast */
   line-height: 1.2;
   font-weight: 700;
-
-  @media (max-width: 768px) {
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
 `;
 
 const HeroSubtitle = styled.p`
   font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #666;
+  color: #1e1e1e; /* soft white text */
   margin-bottom: 2rem;
   line-height: 1.6;
-
-  @media (max-width: 768px) {
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
-  }
 `;
 
 const ButtonGroup = styled.div`
