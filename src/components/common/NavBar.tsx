@@ -48,6 +48,7 @@ function Navbar() {
         <NavButton onClick={() => scrollToSection("projects", "portfolios")}>Building Services</NavButton>
         <NavButton onClick={() => scrollToSection("projects", "bookings")}>Booking System</NavButton>
         <NavButton onClick={() => scrollToSection("team")}>Meet the Team</NavButton>
+        <NavButton onClick={() => scrollToSection("contact")}>Contact Us</NavButton>
         <CTAButton onClick={() => scrollToSection("pricing")}>Get Started</CTAButton>
       </NavLinks>
     </NavContainer>

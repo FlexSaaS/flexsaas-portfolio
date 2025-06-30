@@ -17,10 +17,15 @@ function Hero() {
     }
   }
 
+  function scrollToContact(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
-    <div id="home">
-      {" "}
-      {/*This ID is for for navigation */}
       <HeroContainer>
         <BackgroundWrapper>
           <InfiniteImageScroll />
@@ -36,7 +41,7 @@ function Hero() {
           </ButtonGroup>
         </HeroContent>
       </HeroContainer>
-    </div>
+
   );
 }
 
@@ -109,7 +114,7 @@ const HeroSubtitle = styled.p`
 
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 
   @media (max-width: 480px) {
     flex-direction: column;
