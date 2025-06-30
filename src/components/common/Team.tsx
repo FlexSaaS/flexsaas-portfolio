@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 function Team() {
   return (
@@ -12,16 +11,22 @@ function Team() {
           </MemberImage>
           <MemberName>Ebenezer Boakye</MemberName>
           <MemberRole>Co-Founder & Developer</MemberRole>
-          <MemberBio>Full-stack developer with a passion for creating intuitive user experiences.</MemberBio>
+          <MemberBio>
+            Full-stack developer with a passion for creating intuitive user
+            experiences.
+          </MemberBio>
         </TeamMember>
 
         <TeamMember>
           <MemberImage>
-            <img src="/Pierre.jpeg" alt="Pierre Louis" />
+            <img src="/Pierre.jpeg" alt="Pierre Guichard" />
           </MemberImage>
-          <MemberName>Pierre Louis</MemberName>
-          <MemberRole>Co-Founder & Designer</MemberRole>
-          <MemberBio>UX/UI designer focused on creating beautiful, functional interfaces.</MemberBio>
+          <MemberName>Pierre Guichard</MemberName>
+          <MemberRole>Co-Founder & Developer</MemberRole>
+          <MemberBio>
+            Full-stack developer with a strong eye for UI/UX, building
+            easy-to-use, attractive apps.
+          </MemberBio>
         </TeamMember>
 
         <TeamMember>
@@ -30,7 +35,10 @@ function Team() {
           </MemberImage>
           <MemberName>Samson Safo</MemberName>
           <MemberRole>Co-Founder & Marketer</MemberRole>
-          <MemberBio>Growth marketer who helps businesses connect with their ideal customers.</MemberBio>
+          <MemberBio>
+            Growth marketer who helps businesses connect with their ideal
+            customers.
+          </MemberBio>
         </TeamMember>
       </TeamGrid>
     </TeamContainer>
@@ -61,7 +69,7 @@ const MemberImage = styled.div`
   margin: 0 auto 1.5rem;
   overflow: hidden;
   border: 3px solid #f0f0f0;
-  
+
   img {
     width: 100%;
     height: 100%;
