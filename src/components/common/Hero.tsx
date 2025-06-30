@@ -52,14 +52,14 @@ const BackgroundWrapper = styled.div`
 `;
 const HeroContainer = styled.section`
   min-height: 70vh;
-  position: relative; /* needed for absolute background */
+  position: relative;
   display: flex;
   align-items: center;
   padding: 0 5%;
-  overflow: hidden; /* hide scrollbars of background */
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    padding-top: 80px; /* Account for fixed navbar */
+    padding-top: 80px;
     text-align: center;
   }
 `;
@@ -69,10 +69,10 @@ const HeroContent = styled.div`
   z-index: 2;
   height: 100%;
   max-width: 600px;
-  padding: 2rem;
+  padding: 4rem;
 
-  background: rgba(255, 255, 255, 0.6); /* darker background */
-  backdrop-filter: blur(20px); /* stronger blur */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
