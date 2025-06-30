@@ -39,7 +39,7 @@ function EmailForm() {
   };
 
   return (
-    <FormContainer>
+    <FormContainer id="contact">
       <SectionTitle>Get In Touch</SectionTitle>
       <SectionSubtitle>We'd love to hear from you</SectionSubtitle>
       <Form ref={formRef} onSubmit={handleSubmit}>
