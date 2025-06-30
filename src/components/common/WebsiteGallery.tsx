@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes, css } from "styled-components";
 
 const imagePaths = ["/1.PNG", "/2.PNG", "/3.PNG", "/4.PNG", "/5.PNG"];
