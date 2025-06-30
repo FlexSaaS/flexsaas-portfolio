@@ -1,25 +1,21 @@
 import styled from "styled-components";
-import { useState } from "react";
 import PurchaseButton from "./PurchaseButton";
 
 function Pricing() {
-  const [activeTab, setActiveTab] = useState("portfolio");
-
-  // Portfolio pricing plans
+  // Portfolio pricing plans (now only 2 tiers)
   const portfolioPlans = [
     {
       id: 1,
       title: "Basic Portfolio",
-      price: "£21",
+      price: "£19",
       badge: "Tier 1 - Basic",
       priceId: "price_1RdDvH2a7jzpskfovW9dn9A9",
       features: [
         "5 Project Showcases",
         "Contact Form",
         "Basic SEO",
+        "Client Testimonials",
         "Mobile Responsive",
-        "Email Support",
-        "1 Year Hosting",
         "Monthly Backups",
         "Basic Analytics",
       ],
@@ -27,51 +23,32 @@ function Pricing() {
     },
     {
       id: 2,
-      title: "Professional",
+      title: "Premium Portfolio",
       price: "£49",
-      badge: "Tier 2 - Most Popular",
+      badge: "Tier 2 - Premium",
       priceId: "price_1Rf5gW2a7jzpskfo1al9rslA",
       features: [
-        "Unlimited Projects",
-        "Client Testimonials",
+        "Custom Domain✅",
+        "Review System✅",
+        "Unlimited Projects✅",
+        "Contact Form",
         "Advanced SEO",
         "Gallery System",
         "Priority Support",
-        "2 Years Hosting",
-        "Weekly Backups",
-        "Advanced Analytics",
-        "Social Media Integration",
+        "Client Testimonials",
+        "Mobile Responsive",
+        "Advanced Analytics✅",
       ],
       cta: "Get Started",
       highlighted: true,
     },
-    {
-      id: 3,
-      title: "Enterprise",
-      price: "£89",
-      badge: "Tier 3 - Professional Features",
-      priceId: "price_1Rf5h62a7jzpskfo7xPNtKdI",
-      features: [
-        "All Professional Features",
-        "Review System",
-        "Client Portal",
-        "Custom Domain",
-        "24/7 Support",
-        "3 Years Hosting",
-        "Daily Backups",
-        "Premium Analytics",
-        "Custom Integrations",
-        "Dedicated Account Manager",
-      ],
-      cta: "Get Started",
-    },
   ];
 
-  // Booking system pricing plans
+  // Booking system pricing plans (now only 2 tiers)
   const bookingPlans = [
     {
       id: 1,
-      title: "Essentials",
+      title: "Basic Booking",
       price: "£59",
       badge: "Tier 1 - Basic",
       priceId: "price_1Rf5hR2a7jzpskfou1EYRpQ3",
@@ -88,12 +65,12 @@ function Pricing() {
     },
     {
       id: 2,
-      title: "Professional",
+      title: "Premium Booking",
       price: "£79",
-      badge: "Tier 2 - Most Popular",
+      badge: "Tier 2 - Premium",
       priceId: "price_1Rf5hg2a7jzpskfoWNV8qmDQ",
       features: [
-        "All Essentials Features",
+        "All Basic Features",
         "Payment Processing",
         "SMS Reminders",
         "Client Management",
@@ -105,70 +82,59 @@ function Pricing() {
       cta: "Get Started",
       highlighted: true,
     },
-    {
-      id: 3,
-      title: "Enterprise",
-      price: "£129",
-      badge: "Tier 3 - Professional Features",
-      priceId: "price_1Rf5hu2a7jzpskfoprrvbJ6y",
-      features: [
-        "All Professional Features",
-        "Multi-staff Scheduling",
-        "Inventory Management",
-        "Custom Branding",
-        "API Access",
-        "Unlimited Staff Members",
-        "White-label Options",
-        "Custom Development",
-        "Dedicated Support",
-      ],
-      cta: "Get Started",
-    },
   ];
 
-  const activePlans = activeTab === "portfolio" ? portfolioPlans : bookingPlans;
-
   return (
-    <PricingSection>
-      <SectionTitle>Simple, Transparent Pricing</SectionTitle>
-      <SectionSubtitle>
-        Choose the perfect plan for your business needs
-      </SectionSubtitle>
+    <div id="pricing">
+      <PricingSection>
+        <SectionTitle>Simple, Transparent Pricing</SectionTitle>
+        <SectionSubtitle>Choose the perfect plan for your business needs</SectionSubtitle>
 
-      <ServiceTabs>
-        <ServiceTab
-          active={activeTab === "portfolio"}
-          onClick={() => setActiveTab("portfolio")}
-        >
-          Portfolio Websites
-        </ServiceTab>
-        <ServiceTab
-          active={activeTab === "booking"}
-          onClick={() => setActiveTab("booking")}
-        >
-          Booking Systems
-        </ServiceTab>
-      </ServiceTabs>
+        <ServiceSection>
+          <ServiceHeader>Portfolio Websites</ServiceHeader>
+          <PricingGrid>
+            {portfolioPlans.map((plan) => (
+              <PricingCard key={plan.id} highlighted={plan.highlighted}>
+                <ServiceBadge>{plan.badge}</ServiceBadge>
+                <PlanTitle>{plan.title}</PlanTitle>
+                <PlanPrice>
+                  {plan.price}
+                  <span>/mo</span>
+                </PlanPrice>
+                <FeatureList>
+                  {plan.features.map((feature, index) => (
+                    <FeatureItem key={index}>{feature}</FeatureItem>
+                  ))}
+                </FeatureList>
+                <PurchaseButton priceId={plan.priceId} />
+              </PricingCard>
+            ))}
+          </PricingGrid>
+        </ServiceSection>
 
-      <PricingGrid>
-        {activePlans.map((plan) => (
-          <PricingCard key={plan.id} highlighted={plan.highlighted}>
-            <ServiceBadge>{plan.badge}</ServiceBadge>
-            <PlanTitle>{plan.title}</PlanTitle>
-            <PlanPrice>
-              {plan.price}
-              <span>/mo</span>
-            </PlanPrice>
-            <FeatureList>
-              {plan.features.map((feature, index) => (
-                <FeatureItem key={index}>{feature}</FeatureItem>
-              ))}
-            </FeatureList>
-            <PurchaseButton priceId={plan.priceId} />
-          </PricingCard>
-        ))}
-      </PricingGrid>
-    </PricingSection>
+        <ServiceSection>
+          <ServiceHeader>Booking Systems</ServiceHeader>
+          <PricingGrid>
+            {bookingPlans.map((plan) => (
+              <PricingCard key={plan.id} highlighted={plan.highlighted}>
+                <ServiceBadge>{plan.badge}</ServiceBadge>
+                <PlanTitle>{plan.title}</PlanTitle>
+                <PlanPrice>
+                  {plan.price}
+                  <span>/mo</span>
+                </PlanPrice>
+                <FeatureList>
+                  {plan.features.map((feature, index) => (
+                    <FeatureItem key={index}>{feature}</FeatureItem>
+                  ))}
+                </FeatureList>
+                <PurchaseButton priceId={plan.priceId} />
+              </PricingCard>
+            ))}
+          </PricingGrid>
+        </ServiceSection>
+      </PricingSection>
+    </div>
   );
 }
 
@@ -195,26 +161,34 @@ const SectionSubtitle = styled.p`
   font-size: 1.1rem;
 `;
 
-const ServiceTabs = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-  gap: 1rem;
+const ServiceSection = styled.div`
+  margin-bottom: 4rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
-const ServiceTab = styled.button<{ active?: boolean }>`
-  padding: 0.8rem 1.5rem;
-  background: ${({ active }) => (active ? "#5b21b6" : "transparent")};
-  color: ${({ active }) => (active ? "white" : "#555")};
-  border: ${({ active }) => (active ? "none" : "1px solid #ddd")};
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 25px;
+const ServiceHeader = styled.h3`
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 4rem;
+  color: #0066ff;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 1rem;
 
-  &:hover {
-    background: ${({ active }) => (active ? "#472196" : "#f0f0f0")};
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #0066ff, rgb(21, 75, 155));
+    border-radius: 1px;
   }
 `;
 
@@ -246,15 +220,15 @@ const PricingCard = styled.div<{ highlighted?: boolean }>`
   ${({ highlighted }) =>
     highlighted &&
     `
-    border: 2px solid #5b21b6;
+    border: 2px solid  #0066ff;
     transform: scale(1.02);
     
     &::before {
-      content: 'Most Popular';
+      content: 'Recommended Plan';
       position: absolute;
       top: -12px;
       right: 20px;
-      background: #5b21b6;
+      background: #0066ff;
       color: white;
       padding: 0.3rem 0.8rem;
       border-radius: 999px;

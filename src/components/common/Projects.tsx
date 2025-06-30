@@ -1,14 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import {
-  FiExternalLink,
-  FiX,
-  FiChevronDown,
-  FiChevronUp,
-} from "react-icons/fi";
-import { useSearchParams } from "react-router-dom";
+import { FiExternalLink, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
 
-// Type definitions
 type Project = {
   id: number;
   title: string;
@@ -30,8 +23,7 @@ const projects: ProjectsData = {
     {
       id: 1,
       title: "Johnson Construction",
-      description:
-        "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
+      description: "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
       image: "/construction-fallback.png",
       url: "https://clientproto.netlify.app/",
       category: "Construction",
@@ -39,8 +31,7 @@ const projects: ProjectsData = {
     {
       id: 2,
       title: "Anyfix Limited",
-      description:
-        "Clean, professional portfolio for construction, plumbing and electrical services with service area maps.",
+      description: "Clean, professional portfolio for construction, plumbing and electrical services with service area maps.",
       image: "/AnyFix.png",
       url: "https://anyfixproto.netlify.app/",
       category: "Electrical, Construction and Plumbing",
@@ -50,8 +41,7 @@ const projects: ProjectsData = {
     {
       id: 3,
       title: "Masaf Hair Studio",
-      description:
-        "Booking system with stylist selection, service packages, and online payments.",
+      description: "Booking system with stylist selection, service packages, and online payments.",
       image: "/Masaf.png",
       url: "https://masaf-hairstylish.netlify.app/",
       category: "Hair Salon",
@@ -59,9 +49,8 @@ const projects: ProjectsData = {
     {
       id: 4,
       title: "Urban Barbers",
-      description:
-        "Mobile-friendly booking system with loyalty program integration.",
-      image: "/barber-booking.jpg",
+      description: "Mobile-friendly booking system with loyalty program integration.",
+      image: "/barber-bookings.jpeg",
       url: "https://manage-bookings.netlify.app/",
       category: "Barber",
     },
@@ -69,24 +58,31 @@ const projects: ProjectsData = {
 };
 
 function Projects() {
-  const [searchParams] = useSearchParams();
-  const urlCategory = searchParams.get("category") as ProjectCategory | null;
-
   const [activeProject, setActiveProject] = useState<Project | null>(null);
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>(
-    urlCategory && ["portfolios", "bookings"].includes(urlCategory)
-      ? urlCategory
-      : "all"
-  );
-  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>(
-    {}
-  );
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
-    if (urlCategory && ["portfolios", "bookings"].includes(urlCategory)) {
-      setActiveCategory(urlCategory);
-    }
-  }, [urlCategory]);
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.includes("#projects")) {
+        const params = new URLSearchParams(hash.split("?")[1]);
+        const category = params.get("category");
+        if (category && ["portfolios", "bookings"].includes(category)) {
+          setActiveCategory(category as ProjectCategory);
+        } else {
+          setActiveCategory("all");
+        }
+      }
+    };
+
+    // Initial check
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   const openModal = (project: Project) => {
     setActiveProject(project);
@@ -113,105 +109,93 @@ function Projects() {
       : projects.bookings;
 
   return (
-    <ProjectsContainer>
-      <SectionHeader>
-        <SectionTitle>Our Work</SectionTitle>
-        <SectionSubtitle>
-          Explore projects we've created for our clients
-        </SectionSubtitle>
+    <div id="projects">
+      <ProjectsContainer>
+        <SectionHeader>
+          <SectionTitle>Our Work</SectionTitle>
+          <SectionSubtitle>Explore projects we've created for our clients</SectionSubtitle>
 
-        <CategoryFilters>
-          <CategoryButton
-            active={activeCategory === "all"}
-            onClick={() => setActiveCategory("all")}
-          >
-            All Projects
-          </CategoryButton>
-          <CategoryButton
-            active={activeCategory === "portfolios"}
-            onClick={() => setActiveCategory("portfolios")}
-          >
-            Portfolio Sites
-          </CategoryButton>
-          <CategoryButton
-            active={activeCategory === "bookings"}
-            onClick={() => setActiveCategory("bookings")}
-          >
-            Booking Systems
-          </CategoryButton>
-        </CategoryFilters>
-      </SectionHeader>
+          <CategoryFilters>
+            <CategoryButton active={activeCategory === "all"} onClick={() => setActiveCategory("all")}>
+              All Projects
+            </CategoryButton>
+            <CategoryButton active={activeCategory === "portfolios"} onClick={() => setActiveCategory("portfolios")}>
+              Portfolio Sites
+            </CategoryButton>
+            <CategoryButton active={activeCategory === "bookings"} onClick={() => setActiveCategory("bookings")}>
+              Booking Systems
+            </CategoryButton>
+          </CategoryFilters>
+        </SectionHeader>
 
-      <ProjectsGrid>
-        {filteredProjects.map((project) => {
-          const isExpanded = expandedCards[project.id] || false;
-          const shouldTruncate = project.description.length > 200;
-          const displayText = isExpanded
-            ? project.description
-            : shouldTruncate
-            ? `${project.description.substring(0, 200)}...`
-            : project.description;
+        <ProjectsGrid>
+          {filteredProjects.map((project) => {
+            const isExpanded = expandedCards[project.id] || false;
+            const shouldTruncate = project.description.length > 200;
+            const displayText = isExpanded
+              ? project.description
+              : shouldTruncate
+              ? `${project.description.substring(0, 200)}...`
+              : project.description;
 
-          return (
-            <ProjectCard key={project.id}>
-              <ProjectImage>
-                <img src={project.image} alt={project.title} />
-                <Overlay onClick={() => openModal(project)}>
-                  <ViewButton>Preview Project</ViewButton>
-                </Overlay>
-              </ProjectImage>
-              <ProjectInfo>
-                <ProjectCategory>{project.category}</ProjectCategory>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDescription>
-                  {displayText}
-                  {shouldTruncate && (
-                    <ExpandButton onClick={() => toggleDescription(project.id)}>
-                      {isExpanded ? (
-                        <>
-                          <FiChevronUp /> See less
-                        </>
-                      ) : (
-                        <>
-                          <FiChevronDown /> See more
-                        </>
-                      )}
-                    </ExpandButton>
-                  )}
-                </ProjectDescription>
-                <ViewButton onClick={() => openModal(project)}>
-                  <FiExternalLink /> View Live
-                </ViewButton>
-              </ProjectInfo>
-            </ProjectCard>
-          );
-        })}
-      </ProjectsGrid>
+            return (
+              <ProjectCard key={project.id}>
+                <ProjectImage>
+                  <img src={project.image} alt={project.title} />
+                  <Overlay onClick={() => openModal(project)}>
+                    <ViewButton>Preview Project</ViewButton>
+                  </Overlay>
+                </ProjectImage>
+                <ProjectInfo>
+                  <ProjectCategory>{project.category}</ProjectCategory>
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                  <ProjectDescription>
+                    {displayText}
+                    {shouldTruncate && (
+                      <ExpandButton onClick={() => toggleDescription(project.id)}>
+                        {isExpanded ? (
+                          <>
+                            <FiChevronUp /> See less
+                          </>
+                        ) : (
+                          <>
+                            <FiChevronDown /> See more
+                          </>
+                        )}
+                      </ExpandButton>
+                    )}
+                  </ProjectDescription>
+                  <ViewButton onClick={() => openModal(project)}>
+                    <FiExternalLink /> View Live
+                  </ViewButton>
+                </ProjectInfo>
+              </ProjectCard>
+            );
+          })}
+        </ProjectsGrid>
 
-      {activeProject && (
-        <ModalOverlay>
-          <ModalContainer>
-            <CloseButton onClick={closeModal}>
-              <FiX size={24} />
-            </CloseButton>
-            <ModalHeader>
-              <ModalTitle>{activeProject.title}</ModalTitle>
-              <ModalCategory>{activeProject.category}</ModalCategory>
-            </ModalHeader>
-            <ProjectIframe
-              src={activeProject.url}
-              title={activeProject.title}
-              loading="lazy"
-            />
-          </ModalContainer>
-        </ModalOverlay>
-      )}
-    </ProjectsContainer>
+        {activeProject && (
+          <ModalOverlay>
+            <ModalContainer>
+              <CloseButton onClick={closeModal}>
+                <FiX size={24} />
+              </CloseButton>
+              <ModalHeader>
+                <ModalTitle>{activeProject.title}</ModalTitle>
+                <ModalCategory>{activeProject.category}</ModalCategory>
+              </ModalHeader>
+              <ProjectIframe src={activeProject.url} title={activeProject.title} loading="lazy" />
+            </ModalContainer>
+          </ModalOverlay>
+        )}
+      </ProjectsContainer>
+    </div>
   );
 }
 
 export default Projects;
 
+// Styled Components (same as before)
 const ProjectsContainer = styled.section`
   padding: 8rem 5% 4rem;
   background: rgba(246, 246, 243, 0.68);

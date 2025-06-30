@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from "styled-components";
 
 function Hero() {
   const scrollToServices = () => {
@@ -9,19 +8,29 @@ function Hero() {
     }
   };
 
+  function scrollToPricing(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.preventDefault();
+    const pricingSection = document.getElementById("pricing");
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
-    <HeroContainer>
-      <HeroContent>
-        <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
-        <HeroSubtitle>
-          We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
-        </HeroSubtitle>
-        <ButtonGroup>
-          <PrimaryButton to="/contact">Get Started</PrimaryButton>
-          <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
-        </ButtonGroup>
-      </HeroContent>
-    </HeroContainer>
+    <div id="home">
+      <HeroContainer>
+        <HeroContent>
+          <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
+          <HeroSubtitle>
+            We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
+          </HeroSubtitle>
+          <ButtonGroup>
+            <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
+            <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
+          </ButtonGroup>
+        </HeroContent>
+      </HeroContainer>
+    </div>
   );
 }
 
@@ -87,7 +96,7 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const PrimaryButton = styled(Link)`
+const PrimaryButton = styled.button`
   background: #0066ff;
   color: white;
   border: none;
@@ -107,7 +116,6 @@ const PrimaryButton = styled(Link)`
     width: 100%;
   }
 `;
-
 const SecondaryButton = styled.button`
   background: transparent;
   color: #0066ff;

@@ -44,7 +44,7 @@ const Button = styled.button.withConfig({
   padding-right: ${(props) => (props.loading ? "2rem" : "1rem")};
   cursor: pointer;
   font-weight: bold;
-  background-color: #5b21b6;
+  background-color: #0066ff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -53,7 +53,7 @@ const Button = styled.button.withConfig({
   &:disabled {
     cursor: not-allowed;
     opacity: 0.6;
-    background-color: #472196;
+    background-color: #004bbf;
   }
 `;
 
