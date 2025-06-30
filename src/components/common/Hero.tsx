@@ -9,13 +9,19 @@ function Hero() {
     }
   };
 
-  function scrollToPricing(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void {
+  function scrollToPricing(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.preventDefault();
     const pricingSection = document.getElementById("pricing");
     if (pricingSection) {
       pricingSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  function scrollToContact(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
     }
   }
 
@@ -25,18 +31,14 @@ function Hero() {
         <InfiniteImageScroll />
       </BackgroundWrapper>
       <HeroContent>
-        <HeroTitle>
-          Beautiful Digital Presence for Service Professionals
-        </HeroTitle>
+        <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
         <HeroSubtitle>
-          We create stunning portfolio websites for construction professionals
-          and powerful booking systems for hair & beauty experts.
+          We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
         </HeroSubtitle>
         <ButtonGroup>
           <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
-          <SecondaryButton onClick={scrollToServices}>
-            Learn More
-          </SecondaryButton>
+          <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
+          <PrimaryButton onClick={scrollToContact}>Contact Us</PrimaryButton>
         </ButtonGroup>
       </HeroContent>
     </HeroContainer>
@@ -103,7 +105,7 @@ const HeroSubtitle = styled.p`
 
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 
   @media (max-width: 480px) {
     flex-direction: column;
