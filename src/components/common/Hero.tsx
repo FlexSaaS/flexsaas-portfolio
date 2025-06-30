@@ -26,22 +26,22 @@ function Hero() {
   }
 
   return (
-    <HeroContainer>
-      <BackgroundWrapper>
-        <InfiniteImageScroll />
-      </BackgroundWrapper>
-      <HeroContent>
-        <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
-        <HeroSubtitle>
-          We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
-        </HeroSubtitle>
-        <ButtonGroup>
-          <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
-          <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
-          <PrimaryButton onClick={scrollToContact}>Contact Us</PrimaryButton>
-        </ButtonGroup>
-      </HeroContent>
-    </HeroContainer>
+      <HeroContainer>
+        <BackgroundWrapper>
+          <InfiniteImageScroll />
+        </BackgroundWrapper>
+        <HeroContent>
+          <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
+          <HeroSubtitle>
+            We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
+          </HeroSubtitle>
+          <ButtonGroup>
+            <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
+            <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
+          </ButtonGroup>
+        </HeroContent>
+      </HeroContainer>
+
   );
 }
 
@@ -51,6 +51,15 @@ const BackgroundWrapper = styled.div`
   inset: 0;
   z-index: 1;
   pointer-events: none;
+
+  /* Add dark overlay */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 2;
+  }
 `;
 const HeroContainer = styled.section`
   min-height: 70vh;
