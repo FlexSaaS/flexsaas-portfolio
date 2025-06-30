@@ -8,6 +8,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Projects from "./components/common/Projects";
 import { DatabaseProvider } from "./db/DatabaseContext";
 import { FirebaseDB } from "./db/FirebaseDB";
+import ScrollToTopButton from "./components/common/ScrollToTop";
 
 const db = new FirebaseDB();
 
@@ -24,6 +25,7 @@ function App() {
           </Routes>
           <Footer />
         </Router>
+        <ScrollToTopButton />
       </DatabaseProvider>
     </ThemeProvider>
   );
