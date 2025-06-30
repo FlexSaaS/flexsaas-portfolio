@@ -1,37 +1,31 @@
 import React, { useRef, useState } from "react";
-import styled from "styled-components";
-import emailjs from "@emailjs/browser";
-
-const SERVICE_ID = "service_6180j5e";
-const TEMPLATE_ID = "template_xyrgm0v";
-const PUBLIC_KEY = "s_7egKYGY7tVPPmMy";
+import styled from "styled-components"; // adjust path as needed
+import { sendEmailForm } from "../../services/emailServices";
 
 function EmailForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<string | null>(null);
 
-  const sendEmail = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!formRef.current) return;
 
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY).then(
-      (result) => {
-        console.log(result.text);
+    sendEmailForm(formRef.current)
+      .then((text) => {
+        console.log(text);
         setStatus("✅ Message sent successfully!");
         formRef.current?.reset();
-      },
-      (error) => {
-        console.error(error.text);
+      })
+      .catch((err) => {
+        console.error(err);
         setStatus("❌ Failed to send message. Try again later.");
-      }
-    );
+      });
   };
 
   return (
     <FormContainer>
       <SectionTitle>Contact Us</SectionTitle>
-      <Form ref={formRef} onSubmit={sendEmail}>
+      <Form ref={formRef} onSubmit={handleSubmit}>
         <Input type="text" name="user_name" placeholder="Your Name" required />
         <Input type="email" name="email" placeholder="Your Email" required />
         <Textarea name="message" placeholder="Your Message" required />
