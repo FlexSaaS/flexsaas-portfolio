@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import PurchaseButton from "./PurchaseButton";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faCrown, faGem, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 function Pricing() {
-  // Portfolio pricing plans (now only 2 tiers)
+  // Portfolio pricing plans
   const portfolioPlans = [
     {
       id: 1,
       title: "Basic Portfolio",
       price: "£19",
-      badge: "Tier 1 - Basic",
+      badge: "Basic",
       priceId: "price_1RdDvH2a7jzpskfovW9dn9A9",
       features: [
         "5 Project Showcases",
@@ -24,33 +26,33 @@ function Pricing() {
     {
       id: 2,
       title: "Premium Portfolio",
-      price: "£49",
-      badge: "Tier 2 - Premium",
+      price: "£29",
+      badge: "Premium",
       priceId: "price_1Rf5gW2a7jzpskfo1al9rslA",
       features: [
-        "Custom Domain✅",
-        "Review System✅",
-        "Unlimited Projects✅",
+        { text: "Custom Domain", premium: true },
+        { text: "Review System", premium: true },
+        { text: "Unlimited Projects", premium: true },
         "Contact Form",
         "Advanced SEO",
         "Gallery System",
         "Priority Support",
         "Client Testimonials",
         "Mobile Responsive",
-        "Advanced Analytics✅",
+        { text: "Advanced Analytics", premium: true },
       ],
       cta: "Get Started",
       highlighted: true,
     },
   ];
 
-  // Booking system pricing plans (now only 2 tiers)
+  // Booking system pricing plans
   const bookingPlans = [
     {
       id: 1,
       title: "Basic Booking",
-      price: "£59",
-      badge: "Tier 1 - Basic",
+      price: "£29",
+      badge: "Basic",
       priceId: "price_1Rf5hR2a7jzpskfou1EYRpQ3",
       features: [
         "Online Scheduling",
@@ -66,23 +68,38 @@ function Pricing() {
     {
       id: 2,
       title: "Premium Booking",
-      price: "£79",
-      badge: "Tier 2 - Premium",
+      price: "£39",
+      badge: "Premium",
       priceId: "price_1Rf5hg2a7jzpskfoWNV8qmDQ",
       features: [
-        "All Basic Features",
-        "Payment Processing",
-        "SMS Reminders",
-        "Client Management",
-        "Priority Support",
-        "Up to 15 Staff Members",
-        "Advanced Reporting",
-        "Custom Booking Forms",
+        { text: "All Basic Features", premium: true },
+        { text: "Payment Processing", premium: true },
+        { text: "SMS Reminders", premium: true },
+        { text: "Client Management", premium: true },
+        { text: "Priority Support", premium: true },
+        { text: "Up to 15 Staff Members", premium: true },
+        { text: "Advanced Reporting", premium: true },
+        { text: "Custom Booking Forms", premium: true },
       ],
       cta: "Get Started",
       highlighted: true,
     },
   ];
+
+  const renderFeatureItem = (feature, index) => {
+    if (typeof feature === 'string') {
+      return <FeatureItem key={index}>{feature}</FeatureItem>;
+    }
+    return (
+      <FeatureItem key={index}>
+        {feature.text} <PremiumFeatureIcon icon={faCheckCircle} />
+      </FeatureItem>
+    );
+  };
+
+  const getBadgeIcon = (badge) => {
+    return badge === "Premium" ? faGem : faLayerGroup;
+  };
 
   return (
     <div id="pricing">
@@ -95,18 +112,23 @@ function Pricing() {
           <PricingGrid>
             {portfolioPlans.map((plan) => (
               <PricingCard key={plan.id} highlighted={plan.highlighted}>
-                <ServiceBadge>{plan.badge}</ServiceBadge>
+                <ServiceBadge>
+                  <FontAwesomeIcon icon={getBadgeIcon(plan.badge)} /> {plan.badge}
+                </ServiceBadge>
+                {plan.highlighted && (
+                  <RecommendedBadge>
+                    <FontAwesomeIcon icon={faCrown} /> Recommended
+                  </RecommendedBadge>
+                )}
                 <PlanTitle>{plan.title}</PlanTitle>
                 <PlanPrice>
                   {plan.price}
                   <span>/mo</span>
                 </PlanPrice>
                 <FeatureList>
-                  {plan.features.map((feature, index) => (
-                    <FeatureItem key={index}>{feature}</FeatureItem>
-                  ))}
+                  {plan.features.map((feature, index) => renderFeatureItem(feature, index))}
                 </FeatureList>
-                <PurchaseButton priceId={plan.priceId} />
+                <PurchaseButton priceId={plan.priceId}>{plan.cta}</PurchaseButton>
               </PricingCard>
             ))}
           </PricingGrid>
@@ -117,18 +139,23 @@ function Pricing() {
           <PricingGrid>
             {bookingPlans.map((plan) => (
               <PricingCard key={plan.id} highlighted={plan.highlighted}>
-                <ServiceBadge>{plan.badge}</ServiceBadge>
+                <ServiceBadge>
+                  <FontAwesomeIcon icon={getBadgeIcon(plan.badge)} /> {plan.badge}
+                </ServiceBadge>
+                {plan.highlighted && (
+                  <RecommendedBadge>
+                    <FontAwesomeIcon icon={faCrown} /> Recommended
+                  </RecommendedBadge>
+                )}
                 <PlanTitle>{plan.title}</PlanTitle>
                 <PlanPrice>
                   {plan.price}
                   <span>/mo</span>
                 </PlanPrice>
                 <FeatureList>
-                  {plan.features.map((feature, index) => (
-                    <FeatureItem key={index}>{feature}</FeatureItem>
-                  ))}
+                  {plan.features.map((feature, index) => renderFeatureItem(feature, index))}
                 </FeatureList>
-                <PurchaseButton priceId={plan.priceId} />
+                <PurchaseButton priceId={plan.priceId}>{plan.cta}</PurchaseButton>
               </PricingCard>
             ))}
           </PricingGrid>
@@ -200,7 +227,7 @@ const PricingGrid = styled.div`
   margin: 0 auto;
 `;
 
-const PricingCard = styled.div<{ highlighted?: boolean }>`
+const PricingCard = styled.div`
   background: white;
   border-radius: 10px;
   padding: 2rem;
@@ -220,21 +247,8 @@ const PricingCard = styled.div<{ highlighted?: boolean }>`
   ${({ highlighted }) =>
     highlighted &&
     `
-    border: 2px solid  #0066ff;
+    border: 2px solid #0066ff;
     transform: scale(1.02);
-    
-    &::before {
-      content: 'Recommended Plan';
-      position: absolute;
-      top: -12px;
-      right: 20px;
-      background: #0066ff;
-      color: white;
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
   `}
 `;
 
@@ -248,6 +262,32 @@ const ServiceBadge = styled.div`
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  svg {
+    font-size: 0.9em;
+  }
+`;
+
+const RecommendedBadge = styled.div`
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #0066ff;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  svg {
+    font-size: 0.9em;
+  }
 `;
 
 const PlanTitle = styled.h3`
@@ -299,4 +339,18 @@ const FeatureItem = styled.li`
   color: #555;
   text-align: left;
   margin: 0 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const PremiumFeatureIcon = styled(FontAwesomeIcon)`
+  color:rgb(6, 126, 26);
+  margin-left: 5px;
+  font-size: 1.2em;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
