@@ -146,7 +146,7 @@ function Pricing() {
               <FeatureList>
                 {plan.features.map((feature, index) => renderFeatureItem(feature, index))}
               </FeatureList>
-              <PurchaseButton priceId={plan.priceId}>{plan.cta}</PurchaseButton>
+              <PurchaseButton priceId={plan.priceId}/>
             </PricingCard>
           ))}
         </PricingGrid>
@@ -176,7 +176,7 @@ function Pricing() {
               <FeatureList>
                 {plan.features.map((feature, index) => renderFeatureItem(feature, index))}
               </FeatureList>
-              <PurchaseButton priceId={plan.priceId}>{plan.cta}</PurchaseButton>
+              <PurchaseButton priceId={plan.priceId}/>
             </PricingCard>
           ))}
         </PricingGrid>
@@ -185,7 +185,7 @@ function Pricing() {
   );
 }
 
-// Styled components with TypeScript
+// Styled Components
 const PricingSection = styled.section`
   padding: 4rem 0;
   max-width: 1200px;
