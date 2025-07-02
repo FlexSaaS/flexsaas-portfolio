@@ -38,6 +38,7 @@ function Hero() {
           <ButtonGroup>
             <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
             <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
+            <PrimaryButton onClick={scrollToContact}>Contact Us</PrimaryButton>
           </ButtonGroup>
         </HeroContent>
       </HeroContainer>
