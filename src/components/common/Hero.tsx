@@ -67,7 +67,7 @@ const HeroContainer = styled.section`
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 5%;
+  padding: 10% 15%;
   overflow: hidden;
 
   @media (max-width: 768px) {
