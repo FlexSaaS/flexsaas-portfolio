@@ -73,6 +73,7 @@ const HeroContainer = styled.section`
   @media (max-width: 768px) {
     padding-top: 80px;
     text-align: center;
+    padding: 0 ;
   }
 `;
 
