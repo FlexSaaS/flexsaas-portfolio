@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import PurchaseButton from "./PurchaseButton";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faCheckCircle, 
-  faCrown, 
-  faGem, 
-  faLayerGroup 
-} from '@fortawesome/free-solid-svg-icons';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckCircle,
+  faCrown,
+  faGem,
+  faLayerGroup,
+} from "@fortawesome/free-solid-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 interface PlanFeature {
   text: string;
@@ -33,7 +33,7 @@ function Pricing() {
       title: "Basic Portfolio",
       price: "£19",
       badge: "Basic",
-      priceId: "price_1RdDvH2a7jzpskfovW9dn9A9",
+      priceId: "price_1RgSMMF2nWji5VZQZxpwyzXb",
       features: [
         "5 Project Showcases",
         "Contact Form",
@@ -41,14 +41,14 @@ function Pricing() {
         "Gallery System",
         "Mobile Responsive",
       ],
-      cta: "Get Started"
+      cta: "Get Started",
     },
     {
       id: 2,
       title: "Premium Portfolio",
       price: "£29",
       badge: "Premium",
-      priceId: "price_1Rf5gW2a7jzpskfo1al9rslA",
+      priceId: "price_1RgSMbF2nWji5VZQMrdB1lyl",
       features: [
         { text: "Custom Domain", premium: true },
         { text: "Review System", premium: true },
@@ -73,7 +73,7 @@ function Pricing() {
       title: "Basic Booking",
       price: "£29",
       badge: "Basic",
-      priceId: "price_1Rf5hR2a7jzpskfou1EYRpQ3",
+      priceId: "price_1RgSMtF2nWji5VZQ0OCmLe0A",
       features: [
         "Online Scheduling",
         "Calendar Integration",
@@ -82,14 +82,14 @@ function Pricing() {
         "Basic Reporting",
         "Mobile Responsive",
       ],
-      cta: "Get Started"
+      cta: "Get Started",
     },
     {
       id: 2,
       title: "Premium Booking",
       price: "£39",
       badge: "Premium",
-      priceId: "price_1Rf5hg2a7jzpskfoWNV8qmDQ",
+      priceId: "price_1RgSN5F2nWji5VZQPmSKHuIH",
       features: [
         { text: "All Basic Features", premium: true },
         { text: "Payment Processing", premium: true },
@@ -106,7 +106,7 @@ function Pricing() {
   ];
 
   const renderFeatureItem = (feature: string | PlanFeature, index: number) => {
-    if (typeof feature === 'string') {
+    if (typeof feature === "string") {
       return <FeatureItem key={index}>{feature}</FeatureItem>;
     }
     return (
@@ -144,9 +144,11 @@ function Pricing() {
                 <span>/mo</span>
               </PlanPrice>
               <FeatureList>
-                {plan.features.map((feature, index) => renderFeatureItem(feature, index))}
+                {plan.features.map((feature, index) =>
+                  renderFeatureItem(feature, index)
+                )}
               </FeatureList>
-              <PurchaseButton priceId={plan.priceId}/>
+              <PurchaseButton priceId={plan.priceId} />
             </PricingCard>
           ))}
         </PricingGrid>
@@ -174,9 +176,11 @@ function Pricing() {
                 <span>/mo</span>
               </PlanPrice>
               <FeatureList>
-                {plan.features.map((feature, index) => renderFeatureItem(feature, index))}
+                {plan.features.map((feature, index) =>
+                  renderFeatureItem(feature, index)
+                )}
               </FeatureList>
-              <PurchaseButton priceId={plan.priceId}/>
+              <PurchaseButton priceId={plan.priceId} />
             </PricingCard>
           ))}
         </PricingGrid>
