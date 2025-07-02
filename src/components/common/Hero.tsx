@@ -26,7 +26,7 @@ function Hero() {
   }
 
   return (
-      <HeroContainer>
+      <HeroContainer id="home">
         <BackgroundWrapper>
           <InfiniteImageScroll />
         </BackgroundWrapper>
