@@ -9,7 +9,9 @@ function Hero() {
     }
   };
 
-  function scrollToPricing(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  function scrollToPricing(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void {
     event.preventDefault();
     const pricingSection = document.getElementById("pricing");
     if (pricingSection) {
@@ -17,7 +19,9 @@ function Hero() {
     }
   }
 
-  function scrollToContact(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  function scrollToContact(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void {
     event.preventDefault();
     const contactSection = document.getElementById("contact");
     if (contactSection) {
@@ -26,23 +30,27 @@ function Hero() {
   }
 
   return (
-      <HeroContainer id="home">
-        <BackgroundWrapper>
-          <InfiniteImageScroll />
-        </BackgroundWrapper>
-        <HeroContent>
-          <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
-          <HeroSubtitle>
-            We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
-          </HeroSubtitle>
-          <ButtonGroup>
-            <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
-            <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
-            <PrimaryButton onClick={scrollToContact}>Contact Us</PrimaryButton>
-          </ButtonGroup>
-        </HeroContent>
-      </HeroContainer>
-
+    <HeroContainer id="home">
+      <BackgroundWrapper>
+        <InfiniteImageScroll />
+      </BackgroundWrapper>
+      <HeroContent>
+        <HeroTitle>
+          Beautiful Digital Presence for Service Professionals
+        </HeroTitle>
+        <HeroSubtitle>
+          We create stunning portfolio websites for construction professionals
+          and powerful booking systems for hair & beauty experts.
+        </HeroSubtitle>
+        <ButtonGroup>
+          <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
+          <SecondaryButton onClick={scrollToServices}>
+            Learn More
+          </SecondaryButton>
+          <PrimaryButton onClick={scrollToContact}>Contact Us</PrimaryButton>
+        </ButtonGroup>
+      </HeroContent>
+    </HeroContainer>
   );
 }
 

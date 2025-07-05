@@ -3,17 +3,23 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
-
 function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
   const phoneNumber = "+447724159139";
-  const message = "Hi FlexSaas! I have a business and I'm interested in your services.";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const message =
+    "Hi FlexSaas! I have a business and I'm interested in your services.";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    message
+  )}`;
 
   return (
     <>
       {/* Mobile Button */}
-      <MobileWhatsAppLink href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+      <MobileWhatsAppLink
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FontAwesomeIcon icon={faWhatsapp} />
       </MobileWhatsAppLink>
 
@@ -23,7 +29,8 @@ function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}>
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <DesktopButtonContent $isHovered={isHovered}>
           <WhatsAppIcon $isHovered={isHovered}>
             <FontAwesomeIcon icon={faWhatsapp} />
@@ -109,7 +116,8 @@ const DesktopButtonContent = styled.div<DesktopButtonProps>`
   padding: 0.75rem 1rem;
   border-radius: 0.375rem 0 0 0.375rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transform: ${({ $isHovered }) => ($isHovered ? "translateX(0)" : "translateX(calc(100% - 3rem))")};
+  transform: ${({ $isHovered }) =>
+    $isHovered ? "translateX(0)" : "translateX(calc(100% - 3rem))"};
   transition: all 0.3s ease-in-out;
 `;
 
