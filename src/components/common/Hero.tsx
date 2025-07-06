@@ -31,7 +31,7 @@ function Hero() {
           <InfiniteImageScroll />
         </BackgroundWrapper>
         <HeroContent>
-          <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
+          <HeroTitle>Your Online Presence Starts Here.</HeroTitle>
           <HeroSubtitle>
             We create stunning portfolio websites and custom digital solution for small local businesses.         
           </HeroSubtitle>
