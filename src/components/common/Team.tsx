@@ -3,7 +3,7 @@ import styled from "styled-components";
 function Team() {
   return (
     <TeamContainer id="team">
-      {/* <SectionTitle>Meet the Team</SectionTitle> */}
+      <SectionTitle>Meet the Team</SectionTitle>
       <TeamGrid>
         <TeamMember>
           <MemberImage>
@@ -46,6 +46,16 @@ function Team() {
 }
 
 export default Team;
+
+const SectionTitle = styled.h2`
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
 
 const TeamContainer = styled.section`
   padding: 8rem 10%;
