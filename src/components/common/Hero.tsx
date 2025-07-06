@@ -33,7 +33,7 @@ function Hero() {
         <HeroContent>
           <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
           <HeroSubtitle>
-            We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
+            We create stunning portfolio websites and custom digital solution for small local businesses.         
           </HeroSubtitle>
           <ButtonGroup>
             <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
