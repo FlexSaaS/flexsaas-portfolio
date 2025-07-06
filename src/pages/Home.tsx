@@ -5,11 +5,13 @@ import Pricing from "../components/common/Pricing";
 import Projects from "../components/common/Projects";
 import Team from "../components/common/Team";
 import Testimonials from "../components/common/Testimonials";
+import Services from "../components/common/Services";
 
 function Home() {
   return (
     <PageContainer>
       <Hero />
+      <Services />
       <Projects />
       <Testimonials />
       <Pricing />

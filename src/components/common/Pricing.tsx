@@ -191,8 +191,9 @@ function Pricing() {
 
 // Styled Components
 const PricingSection = styled.section`
+background: #f5f7fa;
   padding: 4rem 0;
-  max-width: 1200px;
+  // max-width: 1200px;
   margin: 0 auto;
 `;
 
