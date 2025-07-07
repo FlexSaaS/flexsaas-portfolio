@@ -36,8 +36,7 @@ function Team() {
           <MemberName>Samson Safo</MemberName>
           <MemberRole>Co-Founder & Marketer</MemberRole>
           <MemberBio>
-            Growth marketer who helps businesses connect with their ideal
-            customers.
+            Co-founder and software architect. Driving product vision and engineering strategy to build scalable solutions.
           </MemberBio>
         </TeamMember>
       </TeamGrid>
