@@ -41,7 +41,7 @@ export default WhatsAppButton;
 const WhatsAppLinkBase = styled.a`
   position: fixed;
   z-index: 55;
-  background-color: green;
+  background-color: #25D366;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -103,7 +103,7 @@ interface DesktopButtonProps {
 const DesktopButtonContent = styled.div<DesktopButtonProps>`
   display: flex;
   align-items: center;
-  background-color: green;
+  background-color: #25D366;
   color: white;
   backdrop-filter: blur(4px);
   padding: 0.75rem 1rem;
