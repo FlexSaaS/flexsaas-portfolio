@@ -117,9 +117,6 @@ function Testimonials() {
               </StarsContainer>
               <TestimonialText>"{testimonial.quote}"</TestimonialText>
               <TestimonialAuthor>
-                <AuthorImage>
-                  <img src={testimonial.image} alt={testimonial.name} />
-                </AuthorImage>
                 <AuthorInfo>
                   <AuthorName>{testimonial.name}</AuthorName>
                   <AuthorCompany>{testimonial.company}</AuthorCompany>
@@ -206,9 +203,7 @@ const NavigationButton = styled.button<{ disabled: boolean }>`
   }
 
   @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
+    display : none;
   }
 `;
 
@@ -295,21 +290,6 @@ const TestimonialText = styled.p`
 const TestimonialAuthor = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const AuthorImage = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 1.5rem;
-  border: 3px solid rgba(0, 102, 255, 0.1);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `;
 
 const AuthorInfo = styled.div`
