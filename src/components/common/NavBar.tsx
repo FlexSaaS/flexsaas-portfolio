@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -23,6 +23,25 @@ function Navbar() {
   const [active, setActive] = useState("home");
   const [expanded, setExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const sideNavRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobile &&
+        expanded &&
+        sideNavRef.current &&
+        !sideNavRef.current.contains(event.target as Node)
+      ) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobile, expanded]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -80,6 +99,7 @@ function Navbar() {
       )}
 
       <SideNav
+        ref={sideNavRef}
         expanded={expanded}
         onMouseEnter={() => !isMobile && setExpanded(true)}
         onMouseLeave={() => !isMobile && setExpanded(false)}
