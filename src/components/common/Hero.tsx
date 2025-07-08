@@ -99,11 +99,11 @@ const RightSide = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-bottom: 2rem;
   gap: 1rem;
   @media (max-width: 1000px) {
     flex-direction: column;
     gap: 0rem;
+    padding-bottom: 2rem;
   }
 `;
 
