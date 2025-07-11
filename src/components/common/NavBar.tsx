@@ -15,7 +15,7 @@ const sections = [
   { id: "home", label: "Home", icon: faHome },
   { id: "projects", label: "Our Work", icon: faBriefcase },
   { id: "pricing", label: "Get Started", icon: faDollarSign },
-  { id: "team", label: "Meet the Team", icon: faUsers },
+  { id: "team", label: "About Us", icon: faUsers },
   { id: "contact", label: "Contact Us", icon: faEnvelope },
 ];
 
