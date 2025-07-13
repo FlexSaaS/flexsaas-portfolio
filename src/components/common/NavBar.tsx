@@ -110,7 +110,7 @@ function Navbar() {
         <LogoWrapper>
           <LogoImg
             src={expanded ? "/logo.png" : "/favi.png"}
-            alt="Logo"
+            alt={expanded ? "FlexSaaS full logo - Empowering Small Businesses Online" : "FlexSaaS icon logo"}
             expanded={expanded}
           />
         </LogoWrapper>

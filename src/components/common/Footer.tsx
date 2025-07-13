@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 function Footer() {
   return (
-    <FooterContainer>
+    <FooterContainer aria-label="Site footer">
       <FooterGrid>
         <FooterColumn>
           <h3>Services</h3>
@@ -43,11 +43,11 @@ function Footer() {
       
       <FooterBottom>
         <div>© {new Date().getFullYear()} FlexSaaS. All rights reserved.</div>
-        <SocialLinks>
-          <a href="#"><i className="fab fa-twitter"></i></a>
-          <a href="#"><i className="fab fa-facebook"></i></a>
-          <a href="#"><i className="fab fa-instagram"></i></a>
-          <a href="#"><i className="fab fa-linkedin"></i></a>
+        <SocialLinks aria-label="Social media links">
+          <a href="https://twitter.com/flexsaas" aria-label="FlexSaaS on Twitter"><i className="fab fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://facebook.com/flexsaas" aria-label="FlexSaaS on Facebook"><i className="fab fa-facebook" aria-hidden="true"></i></a>
+          <a href="https://instagram.com/flexsaas" aria-label="FlexSaaS on Instagram"><i className="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://linkedin.com/company/flexsaas" aria-label="FlexSaaS on LinkedIn"><i className="fab fa-linkedin" aria-hidden="true"></i></a>
         </SocialLinks>
       </FooterBottom>
     </FooterContainer>
