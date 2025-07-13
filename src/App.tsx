@@ -20,10 +20,12 @@ function App() {
       <DatabaseProvider value={db}>
         <Router>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-          </Routes>
+          <main id="main-content" tabIndex={-1}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+            </Routes>
+          </main>
           <Footer />
         </Router>
         <WhatsAppButton />

@@ -47,7 +47,11 @@ export default function InfiniteImageScroll({
       <ScrollingContent isMobile={isMobile} direction={direction} speed={speed}>
         <ImageWrapper isMobile={isMobile}>
           {duplicatedImages.map((src, i) => (
-            <img key={`img-${i}`} src={src} alt={`scroll-img-${i}`} />
+            <img
+              key={`img-${i}`}
+              src={src}
+              alt={`Portfolio example ${((i % shuffledImages.length) + 1)}`}
+            />
           ))}
         </ImageWrapper>
         <ImageWrapper isMobile={isMobile}>
@@ -55,7 +59,7 @@ export default function InfiniteImageScroll({
             <img
               key={`img-duplicate-${i}`}
               src={src}
-              alt={`scroll-img-duplicate-${i}`}
+              alt={`Portfolio example duplicate ${((i % shuffledImages.length) + 1)}`}
             />
           ))}
         </ImageWrapper>

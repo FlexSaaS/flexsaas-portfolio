@@ -27,7 +27,7 @@ function Hero() {
   const isMobile = useIsMobile();
   return (
     <Container>
-      <HeroContainer id="home">
+      <HeroContainer id="home" aria-label="Hero section: Your Online Presence Starts Here">
         <LeftSide>
           <HeroContent>
             <HeroTitle>Your Online Presence Starts Here.</HeroTitle>
