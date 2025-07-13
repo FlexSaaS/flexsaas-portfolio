@@ -15,8 +15,8 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     quote: "Our new website has brought in twice as many leads as before. The portfolio showcase makes it easy to demonstrate our quality work.",
-    name: "Mike Johnson",
-    company: "Johnson Construction",
+    name: "Lucian Picior",
+    company: "Xpro Build",
     image: "/contractor.jpg",
     rating: 5,
     category: 'portfolio'
