@@ -44,16 +44,13 @@ function Team() {
       <AboutUsContainer>
         <AboutUsTitle>About Us</AboutUsTitle>
         <AboutUsText>
-          FlexSaaS was founded to empower local small businesses by helping them gain a strong online presence. 
-          We offer modern, user-friendly web solutions tailored to your needs and remove the stress from creating, managing and maintaining your website. 
-          This allows you to focus on what you do best - running your business, giving you more time to focus on your customers and growth while we handle the technical details.
+        FlexSaaS empowers local small businesses by creating modern, user-friendly websites tailored to their needs.
+         We take the stress out of building and managing your online presence, 
+        so you can focus on running your business and serving your customers.
+        Our mission is to make digital transformation simple, affordable, and effective.
+        We offer high-quality web development and booking solutions that help you connect with customers and grow your business.
 
-          Our mission is to make digital transformation accessible and effective for every small business.
-          To achieve this, we provide comprehensive web development services and booking systems that are both affordable and high-quality.
-          We believe every business deserves a professional online presence to connect with customers and grow. 
-          With our expertise, we help you navigate the digital landscape and achieve your business goals.
-          Your success is our priority, and we are committed to delivering exceptional service and results.
-          Work with us to elevate your business in the digital age.
+        With FlexSaaS, you gain a reliable partner committed to your success in the digital age.
 
           <AboutUsTheme>
           Your Online Presence Starts Here!
