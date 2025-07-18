@@ -46,14 +46,14 @@ const projects: ProjectsData = {
       url: "https://masaf-hairstylish.netlify.app/",
       category: "Hair Salon",
     },
-    {
-      id: 4,
-      title: "Urban Barbers",
-      description: "Mobile-friendly booking system with loyalty program integration.",
-      image: "/barber-bookings.jpeg",
-      url: "https://manage-bookings.netlify.app/",
-      category: "Barber",
-    },
+    // {
+    //   id: 4,
+    //   title: "Urban Barbers",
+    //   description: "Mobile-friendly booking system with loyalty program integration.",
+    //   image: "/barber-bookings.jpeg",
+    //   url: "https://manage-bookings.netlify.app/",
+    //   category: "Barber",
+    // },
   ],
 };
 
