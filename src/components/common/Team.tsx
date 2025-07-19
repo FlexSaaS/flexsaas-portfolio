@@ -28,7 +28,7 @@ function Team() {
             <img src="/SafoS.png" alt="Samson Safo" />
           </MemberImage>
           <MemberName>Samson Safo</MemberName>
-          <MemberRole>Co-Founder & Marketer</MemberRole>
+          <MemberRole>Co-Founder & Software Architect</MemberRole>
           <MemberBio>Growth marketer who helps businesses connect with their ideal customers.</MemberBio>
         </TeamMember>
       </TeamGrid>
