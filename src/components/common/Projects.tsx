@@ -22,10 +22,10 @@ const projects: ProjectsData = {
   portfolios: [
     {
       id: 1,
-      title: "Johnson Construction",
+      title: "Xpro Build",
       description: "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
       image: "/construction-fallback.png",
-      url: "https://clientproto.netlify.app/",
+      url: "https://xprobuild.co.uk",
       category: "Construction",
     },
     {
@@ -46,14 +46,14 @@ const projects: ProjectsData = {
       url: "https://masaf-hairstylish.netlify.app/",
       category: "Hair Salon",
     },
-    {
-      id: 4,
-      title: "Urban Barbers",
-      description: "Mobile-friendly booking system with loyalty program integration.",
-      image: "/barber-bookings.jpeg",
-      url: "https://manage-bookings.netlify.app/",
-      category: "Barber",
-    },
+    // {
+    //   id: 4,
+    //   title: "Urban Barbers",
+    //   description: "Mobile-friendly booking system with loyalty program integration.",
+    //   image: "/barber-bookings.jpeg",
+    //   url: "https://manage-bookings.netlify.app/",
+    //   category: "Barber",
+    // },
   ],
 };
 

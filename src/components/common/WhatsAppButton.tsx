@@ -6,7 +6,7 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
-  const phoneNumber = "+447724159139";
+  const phoneNumber = "+447352467408";
   const message = "Hi FlexSaas! I have a business and I'm interested in your services.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
@@ -41,7 +41,7 @@ export default WhatsAppButton;
 const WhatsAppLinkBase = styled.a`
   position: fixed;
   z-index: 55;
-  background-color: green;
+  background-color: #25D366;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -103,7 +103,7 @@ interface DesktopButtonProps {
 const DesktopButtonContent = styled.div<DesktopButtonProps>`
   display: flex;
   align-items: center;
-  background-color: green;
+  background-color: #25D366;
   color: white;
   backdrop-filter: blur(4px);
   padding: 0.75rem 1rem;

@@ -1,113 +1,128 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import InfiniteImageScroll from "./WebsiteGallery";
+import React, { useState, useEffect } from "react";
+
+const scrollToSection = (id: string, event?: React.MouseEvent) => {
+  event?.preventDefault();
+  const section = document.getElementById(id);
+  section?.scrollIntoView({ behavior: "smooth" });
+};
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 1000);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+}
 
 function Hero() {
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById("services");
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  function scrollToPricing(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    event.preventDefault();
-    const pricingSection = document.getElementById("pricing");
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-
-  function scrollToContact(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    event.preventDefault();
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-
+  const isMobile = useIsMobile();
   return (
-      <HeroContainer>
-        <BackgroundWrapper>
-          <InfiniteImageScroll />
-        </BackgroundWrapper>
-        <HeroContent>
-          <HeroTitle>Beautiful Digital Presence for Service Professionals</HeroTitle>
-          <HeroSubtitle>
-            We create stunning portfolio websites for construction professionals and powerful booking systems for hair & beauty experts.
-          </HeroSubtitle>
-          <ButtonGroup>
-            <PrimaryButton onClick={scrollToPricing}>Get Started</PrimaryButton>
-            <SecondaryButton onClick={scrollToServices}>Learn More</SecondaryButton>
-          </ButtonGroup>
-        </HeroContent>
+    <Container>
+      <HeroContainer id="home" aria-label="Hero section: Your Online Presence Starts Here">
+        <LeftSide>
+          <HeroContent>
+            <HeroTitle>Your Online Presence Starts Here.</HeroTitle>
+            <HeroSubtitle>
+              We create stunning portfolio websites and custom digital solution
+              for small local businesses.
+            </HeroSubtitle>
+            <ButtonGroup>
+              <PrimaryButton onClick={(e) => scrollToSection("pricing", e)}>
+                Get Started
+              </PrimaryButton>
+              <SecondaryButton onClick={() => scrollToSection("services")}>
+                Learn More
+              </SecondaryButton>
+              <PrimaryButton onClick={(e) => scrollToSection("contact", e)}>
+                Contact Us
+              </PrimaryButton>
+            </ButtonGroup>
+          </HeroContent>
+        </LeftSide>
+        <RightSide>
+          {isMobile ? (
+            <InfiniteImageScroll speed={200} direction="left" />
+          ) : (
+            <>
+              <InfiniteImageScroll speed={200} direction="down" />
+              <InfiniteImageScroll speed={200} direction="up" />
+            </>
+          )}
+        </RightSide>
       </HeroContainer>
-
+    </Container>
   );
 }
 
 export default Hero;
-const BackgroundWrapper = styled.div`
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
 
-  /* Add dark overlay */
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 2;
-  }
-`;
-const HeroContainer = styled.section`
-  min-height: 70vh;
-  position: relative;
+const Container = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 0 5%;
-  overflow: hidden;
+  justify-content: center;
+  background-color: #f5f5f5;
+`;
 
-  @media (max-width: 768px) {
-    padding-top: 80px;
-    text-align: center;
+const HeroContainer = styled.section`
+  max-width: 2000px;
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+  width: 100%;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    height: auto; /* Let height expand as needed on mobile */
+  }
+`;
+
+const LeftSide = styled.div`
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RightSide = styled.div`
+  flex: 1.2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 0rem;
+    padding-bottom: 2rem;
   }
 `;
 
 const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  max-width: 600px;
   padding: 4rem;
-
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  width: 100%;
 `;
 
 const HeroTitle = styled.h1`
   font-size: clamp(2rem, 5vw, 3.5rem);
   margin-bottom: 1.5rem;
-  color: #404040; /* white text for contrast */
+  color: #404040;
   line-height: 1.2;
   font-weight: 700;
 `;
 
 const HeroSubtitle = styled.p`
   font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #1e1e1e; /* soft white text */
+  color: #626262;
   margin-bottom: 2rem;
   line-height: 1.6;
 `;
@@ -123,43 +138,39 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const PrimaryButton = styled.button`
-  background: #0066ff;
-  color: white;
-  border: none;
+const buttonStyles = css`
   padding: 1rem 2rem;
   border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
   font-size: 1rem;
-
-  &:hover {
-    background: #0052cc;
-    transform: translateY(-2px);
-  }
 
   @media (max-width: 480px) {
     width: 100%;
   }
 `;
+
+const PrimaryButton = styled.button`
+  ${buttonStyles}
+  background: #0066ff;
+  color: white;
+  border: none;
+
+  &:hover {
+    background: #0052cc;
+    transform: translateY(-2px);
+  }
+`;
+
 const SecondaryButton = styled.button`
+  ${buttonStyles}
   background: transparent;
   color: #0066ff;
   border: 2px solid #0066ff;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1rem;
 
   &:hover {
     background: rgba(0, 102, 255, 0.1);
     transform: translateY(-2px);
-  }
-
-  @media (max-width: 480px) {
-    width: 100%;
   }
 `;
