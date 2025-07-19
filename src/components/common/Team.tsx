@@ -11,10 +11,7 @@ function Team() {
           </MemberImage>
           <MemberName>Ebenezer Boakye</MemberName>
           <MemberRole>Co-Founder & Developer</MemberRole>
-          <MemberBio>
-            Full-stack developer with a passion for creating intuitive user
-            experiences.
-          </MemberBio>
+          <MemberBio>Full-stack developer with a passion for creating intuitive user experiences.</MemberBio>
         </TeamMember>
 
         <TeamMember>
@@ -23,38 +20,27 @@ function Team() {
           </MemberImage>
           <MemberName>Pierre Guichard</MemberName>
           <MemberRole>Co-Founder & Developer</MemberRole>
-          <MemberBio>
-            Full-stack developer with a strong eye for UI/UX, building
-            easy-to-use, attractive apps.
-          </MemberBio>
+          <MemberBio>Full-stack developer with a strong eye for UI/UX, building easy-to-use, attractive apps.</MemberBio>
         </TeamMember>
 
         <TeamMember>
           <MemberImage>
-            <img src="/Safo.jpg" alt="Samson Safo" />
+            <img src="/Safo.png" alt="Samson Safo" />
           </MemberImage>
           <MemberName>Samson Safo</MemberName>
-          <MemberRole>Co-Founder & Marketer</MemberRole>
-          <MemberBio>
-            Co-founder and software architect. Driving product vision and engineering strategy to build scalable solutions.
-          </MemberBio>
+          <MemberRole>Co-Founder & Architect</MemberRole>
+          <MemberBio>Co-founder and software architect. Driving product vision and engineering strategy to build scalable solutions.</MemberBio>
         </TeamMember>
       </TeamGrid>
-      
+
       <AboutUsContainer>
         <AboutUsTitle>About Us</AboutUsTitle>
         <AboutUsText>
-        FlexSaaS empowers local small businesses by creating modern, user-friendly websites tailored to their needs.
-         We take the stress out of building and managing your online presence, 
-        so you can focus on running your business and serving your customers.
-        Our mission is to make digital transformation simple, affordable, and effective.
-        We offer high-quality web development and booking solutions that help you connect with customers and grow your business.
-
-        With FlexSaaS, you gain a reliable partner committed to your success in the digital age.
-
-          <AboutUsTheme>
-          Your Online Presence Starts Here!
-        </AboutUsTheme>
+          FlexSaaS empowers local small businesses by creating modern, user-friendly websites tailored to their needs. We take the stress out of
+          building and managing your online presence, so you can focus on running your business and serving your customers. Our mission is to make
+          digital transformation simple, affordable, and effective. We offer high-quality web development and booking solutions that help you connect
+          with customers and grow your business. With FlexSaaS, you gain a reliable partner committed to your success in the digital age.
+          <AboutUsTheme>Your Online Presence Starts Here!</AboutUsTheme>
         </AboutUsText>
       </AboutUsContainer>
     </TeamContainer>

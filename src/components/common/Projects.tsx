@@ -40,7 +40,7 @@ const projects: ProjectsData = {
   bookings: [
     {
       id: 3,
-      title: "Masaf Hair Studio",
+      title: "Luminous Locks Salon",
       description: "Booking system with stylist selection, service packages, and online payments.",
       image: "/Masaf.png",
       url: "https://masaf-hairstylish.netlify.app/",
