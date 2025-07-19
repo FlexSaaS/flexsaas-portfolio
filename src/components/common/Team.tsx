@@ -11,10 +11,7 @@ function Team() {
           </MemberImage>
           <MemberName>Ebenezer Boakye</MemberName>
           <MemberRole>Co-Founder & Developer</MemberRole>
-          <MemberBio>
-            Full-stack developer with a passion for creating intuitive user
-            experiences.
-          </MemberBio>
+          <MemberBio>Full-stack developer with a passion for creating intuitive user experiences.</MemberBio>
         </TeamMember>
 
         <TeamMember>
@@ -23,22 +20,16 @@ function Team() {
           </MemberImage>
           <MemberName>Pierre Guichard</MemberName>
           <MemberRole>Co-Founder & Developer</MemberRole>
-          <MemberBio>
-            Full-stack developer with a strong eye for UI/UX, building
-            easy-to-use, attractive apps.
-          </MemberBio>
+          <MemberBio>Full-stack developer with a strong eye for UI/UX, building easy-to-use, attractive apps.</MemberBio>
         </TeamMember>
 
         <TeamMember>
           <MemberImage>
-            <img src="/Safo.jpg" alt="Samson Safo" />
+            <img src="/SafoS.png" alt="Samson Safo" />
           </MemberImage>
           <MemberName>Samson Safo</MemberName>
           <MemberRole>Co-Founder & Marketer</MemberRole>
-          <MemberBio>
-            Growth marketer who helps businesses connect with their ideal
-            customers.
-          </MemberBio>
+          <MemberBio>Growth marketer who helps businesses connect with their ideal customers.</MemberBio>
         </TeamMember>
       </TeamGrid>
     </TeamContainer>
