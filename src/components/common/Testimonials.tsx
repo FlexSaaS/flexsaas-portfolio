@@ -19,16 +19,17 @@ const testimonials: Testimonial[] = [
     company: "Xpro Build",
     image: "/contractor.jpg",
     rating: 5,
-    category: 'portfolio'
+    category: "portfolio",
   },
   {
     id: 2,
-    quote: "The booking system has saved me hours each week. Clients can book anytime, and the automated reminders have virtually eliminated no-shows.",
-    name: "Sarah Miller",
-    company: "Miller Hair Studio",
+    quote:
+      "The booking system has saved me hours each week. Clients can book anytime, and the automated reminders have virtually eliminated no-shows.",
+    name: "Patricia Jodes",
+    company: "Jodes Hair Studio",
     image: "/SarahMiller.jpeg",
     rating: 5,
-    category: 'booking'
+    category: "booking",
   },
   {
     id: 3,
@@ -37,26 +38,28 @@ const testimonials: Testimonial[] = [
     company: "Wilson Electric",
     image: "/DavidWilson.jpeg",
     rating: 4,
-    category: 'portfolio'
+    category: "portfolio",
   },
   {
     id: 4,
-    quote: "Our appointment bookings have increased by 40% since implementing this system. The interface is so user-friendly for both us and our clients.",
+    quote:
+      "Our appointment bookings have increased by 40% since implementing this system. The interface is so user-friendly for both us and our clients.",
     name: "Emily Chen",
     company: "Chen Dental",
     image: "/EmilyChen.jpeg",
     rating: 5,
-    category: 'booking'
+    category: "booking",
   },
   {
     id: 5,
-    quote: "The portfolio website has helped us win several high-profile contracts. The image galleries load quickly and look stunning on all devices.",
+    quote:
+      "The portfolio website has helped us win several high-profile contracts. The image galleries load quickly and look stunning on all devices.",
     name: "Robert Taylor",
     company: "Taylor Architects",
     image: "/RobertTaylor.jpeg",
     rating: 4,
-    category: 'portfolio'
-  }
+    category: "portfolio",
+  },
 ];
 
 function Testimonials() {

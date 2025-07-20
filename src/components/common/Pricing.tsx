@@ -1,12 +1,7 @@
 import styled from "styled-components";
 import PurchaseButton from "./PurchaseButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faCrown,
-  faGem,
-  faLayerGroup,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faCrown, faGem, faGift, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 interface PlanFeature {
@@ -116,10 +111,14 @@ function Pricing() {
 
   return (
     <div id="pricing">
+      <FreeTrialBanner>
+        <FontAwesomeIcon icon={faGift} /> We build the website completely for free for 30 days, after which you can choose a plan that suits you.
+      </FreeTrialBanner>
       <PricingSection>
         <SectionTitle>Portfolio Packages</SectionTitle>
         <SectionDescription>
-          Choose the perfect portfolio package to showcase your work
+          Ideal for constructors, plumbers, electricians, and trades people to showcase their work. Choose the perfect pricing package to showcase
+          your work
         </SectionDescription>
         <PricingGrid>
           {portfolioPlans.map((plan) => (
@@ -137,11 +136,7 @@ function Pricing() {
                 {plan.price}
                 <span>/mo</span>
               </PlanPrice>
-              <FeatureList>
-                {plan.features.map((feature, index) =>
-                  renderFeatureItem(feature, index)
-                )}
-              </FeatureList>
+              <FeatureList>{plan.features.map((feature, index) => renderFeatureItem(feature, index))}</FeatureList>
               <PurchaseButton priceId={plan.priceId} />
             </PricingCard>
           ))}
@@ -151,7 +146,8 @@ function Pricing() {
       <PricingSection>
         <SectionTitle>Booking System Packages</SectionTitle>
         <SectionDescription>
-          Manage appointments and bookings with our powerful system
+          Ideal for barbers, hairdressers, nail techs and local businesses that require managing appointments and bookings online. Choose the perfect
+          pricing package.
         </SectionDescription>
         <PricingGrid>
           {bookingPlans.map((plan) => (
@@ -169,11 +165,7 @@ function Pricing() {
                 {plan.price}
                 <span>/mo</span>
               </PlanPrice>
-              <FeatureList>
-                {plan.features.map((feature, index) =>
-                  renderFeatureItem(feature, index)
-                )}
-              </FeatureList>
+              <FeatureList>{plan.features.map((feature, index) => renderFeatureItem(feature, index))}</FeatureList>
               <PurchaseButton priceId={plan.priceId} />
             </PricingCard>
           ))}
@@ -185,12 +177,37 @@ function Pricing() {
 
 // Styled Components
 const PricingSection = styled.section`
-background: #f5f7fa;
+  background: #f5f7fa;
   padding: 4rem 0;
   // max-width: 1200px;
   margin: 0 auto;
 `;
 
+const FreeTrialBanner = styled.div`
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  svg {
+    font-size: 1.5em;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`;
 const SectionTitle = styled.h2`
   font-size: 2rem;
   text-align: center;

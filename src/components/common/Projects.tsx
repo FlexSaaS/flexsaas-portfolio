@@ -257,7 +257,7 @@ const CategoryButton = styled.button<CategoryButtonProps>`
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 2rem;
 
   @media (max-width: 768px) {
