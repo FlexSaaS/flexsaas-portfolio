@@ -26,9 +26,9 @@ function Pricing() {
     {
       id: 1,
       title: "Standard Portfolio",
-      price: "£19",
+      price: "£15",
       badge: "Standard",
-      priceId: "price_1RgSMMF2nWji5VZQZxpwyzXb",
+      priceId: "price_1RpVGuF2nWji5VZQItyhpYzY",
       features: ["5 Project Showcases", "Contact Form", "Standard SEO", "Gallery System", "Mobile Responsive"],
       cta: "Get Started",
     },
