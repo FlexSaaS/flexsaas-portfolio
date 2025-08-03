@@ -39,11 +39,11 @@ function EmailForm() {
       });
   };
 
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "+447352467408";
-    const message = encodeURIComponent("Hi Flexsaas, I am interested in your services.");
-    window.open(`https://wa.me/${phoneNumber}text=${message}`, "_blank");
-  };
+const handleWhatsAppClick = () => {
+  const phoneNumber = "447352467408"; 
+  const message = encodeURIComponent("Hi Flexsaas, I am interested in your services.");
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+};
 
   const handleEmailClick = () => {
     window.location.href = "mailto:support@flexsaas.co.uk";
