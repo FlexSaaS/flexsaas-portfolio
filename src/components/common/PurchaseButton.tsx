@@ -49,6 +49,7 @@ const Button = styled.button.withConfig({
   border: none;
   border-radius: 6px;
   padding: 0.7rem 1.5rem;
+  font-family: inherit;
 
   &:disabled {
     cursor: not-allowed;

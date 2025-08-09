@@ -39,11 +39,13 @@ function EmailForm() {
       });
   };
 
-const handleWhatsAppClick = () => {
-  const phoneNumber = "447352467408"; 
-  const message = encodeURIComponent("Hi Flexsaas, I am interested in your services.");
-  window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
-};
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "447352467408";
+    const message = encodeURIComponent(
+      "Hi Flexsaas, I am interested in your services."
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+  };
 
   const handleEmailClick = () => {
     window.location.href = "mailto:support@flexsaas.co.uk";
@@ -53,30 +55,26 @@ const handleWhatsAppClick = () => {
     <FormContainer id="contact">
       <SectionTitle>Get In Touch</SectionTitle>
       <SectionSubtitle>We'd love to hear from you</SectionSubtitle>
-      
+
       <SocialMediaContainer>
         <SocialTitle>Contact us via:</SocialTitle>
         <SocialIcons>
-          <InstagramIcon 
-            href="https://instagram.com/flexsaas" 
-            target="_blank" 
+          <InstagramIcon
+            href="https://instagram.com/flexsaas"
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
           >
             <FaInstagram size={24} />
           </InstagramIcon>
-          <WhatsAppIcon 
+          <WhatsAppIcon
             onClick={handleWhatsAppClick}
-            as="button" 
+            as="button"
             aria-label="WhatsApp"
           >
             <FaWhatsapp size={24} />
           </WhatsAppIcon>
-          <EmailIcon
-            onClick={handleEmailClick}
-            as="button"
-            aria-label="Email"
-          >
+          <EmailIcon onClick={handleEmailClick} as="button" aria-label="Email">
             <FaEnvelope size={24} />
           </EmailIcon>
         </SocialIcons>
@@ -84,18 +82,32 @@ const handleWhatsAppClick = () => {
 
       <Form ref={formRef} onSubmit={handleSubmit}>
         <InputGroup>
-          <Input type="text" name="user_name" placeholder="Your Name" required />
+          <Input
+            type="text"
+            name="user_name"
+            placeholder="Your Name"
+            required
+          />
         </InputGroup>
         <InputGroup>
           <Input type="email" name="email" placeholder="Your Email" required />
         </InputGroup>
         <InputGroup>
-          <Textarea name="message" placeholder="Your Message" required rows={5} />
+          <Textarea
+            name="message"
+            placeholder="Your Message"
+            required
+            rows={5}
+          />
         </InputGroup>
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Sending..." : "Send Message"}
         </Button>
-        {status && <StatusMessage status={status.includes("✅") ? "success" : "error"}>{status}</StatusMessage>}
+        {status && (
+          <StatusMessage status={status.includes("✅") ? "success" : "error"}>
+            {status}
+          </StatusMessage>
+        )}
       </Form>
     </FormContainer>
   );
@@ -219,6 +231,7 @@ const Button = styled.button`
   justify-content: center;
   gap: 0.5rem;
   height: 52px;
+  font-family: inherit;
 
   &:hover {
     background: #2563eb;
@@ -249,7 +262,8 @@ const StatusMessage = styled.div<{ status: "success" | "error" }>`
   animation: ${fadeIn} 0.3s ease-out;
   background: ${({ status }) => (status === "success" ? "#f0fdf4" : "#fef2f2")};
   color: ${({ status }) => (status === "success" ? "#166534" : "#991b1b")};
-  border: 1px solid ${({ status }) => (status === "success" ? "#bbf7d0" : "#fecaca")};
+  border: 1px solid
+    ${({ status }) => (status === "success" ? "#bbf7d0" : "#fecaca")};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -289,7 +303,7 @@ const SocialIconBase = styled.a`
   background: none;
   border: none;
   padding: 0;
-  
+
   &:hover {
     transform: translateY(-3px) scale(1.1);
   }
@@ -300,31 +314,45 @@ const SocialIconBase = styled.a`
 `;
 
 const InstagramIcon = styled(SocialIconBase)`
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: radial-gradient(
+      circle at 30% 107%,
+      #fdf497 0%,
+      #fdf497 5%,
+      #fd5949 45%,
+      #d6249f 60%,
+      #285aeb 90%
+    );
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   }
 `;
 
 const WhatsAppIcon = styled(SocialIconBase)`
-  background: #25D366;
+  background: #25d366;
   box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
 
   &:hover {
-    background: #128C7E;
+    background: #128c7e;
     box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
   }
 `;
 
 const EmailIcon = styled(SocialIconBase)`
-  background: #EA4335;
+  background: #ea4335;
   box-shadow: 0 4px 10px rgba(234, 67, 53, 0.2);
 
   &:hover {
-    background: #D44638;
+    background: #d44638;
     box-shadow: 0 6px 15px rgba(234, 67, 53, 0.3);
   }
 `;

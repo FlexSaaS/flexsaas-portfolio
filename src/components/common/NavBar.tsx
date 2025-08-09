@@ -110,7 +110,11 @@ function Navbar() {
         <LogoWrapper>
           <LogoImg
             src={expanded ? "/logo.png" : "/favi.png"}
-            alt={expanded ? "FlexSaaS full logo - Empowering Small Businesses Online" : "FlexSaaS icon logo"}
+            alt={
+              expanded
+                ? "FlexSaaS full logo - Empowering Small Businesses Online"
+                : "FlexSaaS icon logo"
+            }
             expanded={expanded}
           />
         </LogoWrapper>
@@ -147,7 +151,7 @@ const ToggleButton = styled.button<{ expanded: boolean }>`
   top: 15px;
   left: 15px;
   z-index: 1100;
-  background: #0053ba;
+  background: #0066ff;
   border: none;
   border-radius: 4px;
   padding: 8px 12px;
@@ -222,11 +226,11 @@ const NavItem = styled.div<{ isActive: boolean }>`
   width: 100%;
   padding: 0 1.2rem;
   cursor: pointer;
-  color: ${({ isActive }) => (isActive ? "#0053ba" : "#666")};
+  color: ${({ isActive }) => (isActive ? "#0066FF" : "#666")};
   font-weight: ${({ isActive }) => (isActive ? "600" : "400")};
   font-size: 1.1rem;
   border-left: ${({ isActive }) =>
-    isActive ? "4px solid #0053ba" : "4px solid transparent"};
+    isActive ? "4px solid #0066FF" : "4px solid transparent"};
   transition: all 0.3s ease;
   background-color: transparent;
 
@@ -246,7 +250,7 @@ const IconWrapper = styled.div<{ expanded: boolean; isActive: boolean }>`
   min-width: 24px;
   height: 24px;
   font-size: 1.25rem;
-  color: ${({ isActive }) => (isActive ? "#0053ba" : "#999")};
+  color: ${({ isActive }) => (isActive ? "0066FF" : "#999")};
   transition: color 0.3s;
 `;
 
@@ -256,7 +260,7 @@ const Label = styled.span<{ expanded: boolean; isActive: boolean }>`
   max-width: ${({ expanded }) => (expanded ? "200px" : "0")};
   opacity: ${({ expanded }) => (expanded ? 1 : 0)};
   transition: max-width 0.3s ease, opacity 0.3s ease;
-  color: ${({ isActive }) => (isActive ? "#0053ba" : "#444")};
+  color: ${({ isActive }) => (isActive ? "#0066FF" : "#444")};
   pointer-events: ${({ expanded }) => (expanded ? "auto" : "none")};
   user-select: none;
 `;
