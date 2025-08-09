@@ -27,7 +27,10 @@ function Hero() {
   const isMobile = useIsMobile();
   return (
     <Container>
-      <HeroContainer id="home" aria-label="Hero section: Your Online Presence Starts Here">
+      <HeroContainer
+        id="home"
+        aria-label="Hero section: Your Online Presence Starts Here"
+      >
         <LeftSide>
           <HeroContent>
             <HeroTitle>Your Online Presence Starts Here.</HeroTitle>
@@ -145,6 +148,7 @@ const buttonStyles = css`
   cursor: pointer;
   transition: all 0.3s;
   font-size: 1rem;
+  font-family: inherit;
 
   @media (max-width: 480px) {
     width: 100%;

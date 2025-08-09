@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { FiExternalLink, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import {
+  FiExternalLink,
+  FiX,
+  FiChevronDown,
+  FiChevronUp,
+} from "react-icons/fi";
 
 type Project = {
   id: number;
@@ -23,7 +28,8 @@ const projects: ProjectsData = {
     {
       id: 1,
       title: "Xpro Build",
-      description: "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
+      description:
+        "Modern portfolio showcasing residential remodeling projects with before/after comparisons.",
       image: "/construction-fallback.png",
       url: "https://xprobuild.co.uk",
       category: "Construction",
@@ -31,7 +37,8 @@ const projects: ProjectsData = {
     {
       id: 2,
       title: "Anyfix Limited",
-      description: "Clean, professional portfolio for construction, plumbing and electrical services with service area maps.",
+      description:
+        "Clean, professional portfolio for construction, plumbing and electrical services with service area maps.",
       image: "/AnyFix.png",
       url: "https://anyfixproto.netlify.app/",
       category: "Electrical, Construction and Plumbing",
@@ -41,7 +48,8 @@ const projects: ProjectsData = {
     {
       id: 3,
       title: "Hair by Dina Salon",
-      description: "Booking system with stylist selection, service packages, and online payments.",
+      description:
+        "Booking system with stylist selection, service packages, and online payments.",
       image: "/Masaf.png",
       url: "https://hairbydina.uk/",
       category: "Hair Salon",
@@ -60,7 +68,9 @@ const projects: ProjectsData = {
 function Projects() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
-  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>(
+    {}
+  );
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -113,16 +123,27 @@ function Projects() {
       <ProjectsContainer>
         <SectionHeader>
           <SectionTitle>Our Work</SectionTitle>
-          <SectionSubtitle>Explore projects we've created for our clients</SectionSubtitle>
+          <SectionSubtitle>
+            Explore projects we've created for our clients
+          </SectionSubtitle>
 
           <CategoryFilters>
-            <CategoryButton active={activeCategory === "all"} onClick={() => setActiveCategory("all")}>
+            <CategoryButton
+              active={activeCategory === "all"}
+              onClick={() => setActiveCategory("all")}
+            >
               All Projects
             </CategoryButton>
-            <CategoryButton active={activeCategory === "portfolios"} onClick={() => setActiveCategory("portfolios")}>
+            <CategoryButton
+              active={activeCategory === "portfolios"}
+              onClick={() => setActiveCategory("portfolios")}
+            >
               Portfolio Sites
             </CategoryButton>
-            <CategoryButton active={activeCategory === "bookings"} onClick={() => setActiveCategory("bookings")}>
+            <CategoryButton
+              active={activeCategory === "bookings"}
+              onClick={() => setActiveCategory("bookings")}
+            >
               Booking Systems
             </CategoryButton>
           </CategoryFilters>
@@ -152,7 +173,9 @@ function Projects() {
                   <ProjectDescription>
                     {displayText}
                     {shouldTruncate && (
-                      <ExpandButton onClick={() => toggleDescription(project.id)}>
+                      <ExpandButton
+                        onClick={() => toggleDescription(project.id)}
+                      >
                         {isExpanded ? (
                           <>
                             <FiChevronUp /> See less
@@ -184,7 +207,11 @@ function Projects() {
                 <ModalTitle>{activeProject.title}</ModalTitle>
                 <ModalCategory>{activeProject.category}</ModalCategory>
               </ModalHeader>
-              <ProjectIframe src={activeProject.url} title={activeProject.title} loading="lazy" />
+              <ProjectIframe
+                src={activeProject.url}
+                title={activeProject.title}
+                loading="lazy"
+              />
             </ModalContainer>
           </ModalOverlay>
         )}
@@ -248,6 +275,7 @@ const CategoryButton = styled.button<CategoryButtonProps>`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
+  font-family: inherit;
 
   &:hover {
     background: ${({ active }) => (active ? "#0052cc" : "#f5f5f5")};
@@ -382,6 +410,7 @@ const ViewButton = styled.button`
   transition: background 0.3s;
   margin-top: auto;
   align-self: flex-start;
+  font-family: inherit;
 
   &:hover {
     background: #0052cc;
