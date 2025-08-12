@@ -11,12 +11,25 @@ function Home() {
   return (
     <PageContainer>
       <Hero />
-      <Services />
+
+      {/* Hash target: /#services */}
+      <section id="services" aria-label="Our services">
+        <Services />
+      </section>
+
       <Projects />
       <Testimonials />
       <Pricing />
-      <Team />
-      <EmailForm />
+
+      {/* Hash target: /#team */}
+      <section id="team" aria-label="Our team">
+        <Team />
+      </section>
+
+      {/* Hash target: /#contact */}
+      <section id="contact" aria-label="Contact us">
+        <EmailForm />
+      </section>
     </PageContainer>
   );
 }

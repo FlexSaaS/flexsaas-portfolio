@@ -1,3 +1,4 @@
+// src/components/common/NavBar.tsx
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,7 @@ import {
   faBars,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const sections = [
   { id: "home", label: "Home", icon: faHome },
@@ -24,7 +26,10 @@ function Navbar() {
   const [expanded, setExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const sideNavRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  // Close sidenav when clicking outside (mobile)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -36,13 +41,11 @@ function Navbar() {
         setExpanded(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMobile, expanded]);
 
+  // Track mobile viewport
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
@@ -50,7 +53,12 @@ function Navbar() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Update active section while on Home; disable on other routes
   useEffect(() => {
+    if (location.pathname !== "/") {
+      setActive("home");
+      return;
+    }
     const handleScroll = () => {
       const middleOfScreen = window.innerHeight / 2;
       for (const section of sections) {
@@ -67,7 +75,7 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -77,13 +85,22 @@ function Navbar() {
       const middleOfScreen = window.innerHeight / 2;
       const scrollTo = absoluteElementTop - middleOfScreen + rect.height / 2;
 
-      window.scrollTo({
-        top: scrollTo,
-        behavior: "smooth",
-      });
-
-      if (isMobile) setExpanded(false);
+      window.scrollTo({ top: scrollTo, behavior: "smooth" });
     }
+  };
+
+  const handleNavClick = (id: string) => {
+    if (id === "home") {
+      if (location.pathname !== "/") navigate("/");
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (location.pathname !== "/") {
+      // Not on Home: route to Home with a hash. ScrollToHash will handle scrolling.
+      navigate(`/#${id}`);
+    } else {
+      // Already on Home: do the smooth in-page scroll.
+      scrollToSection(id);
+    }
+    if (isMobile) setExpanded(false);
   };
 
   return (
@@ -116,18 +133,21 @@ function Navbar() {
                 : "FlexSaaS icon logo"
             }
             expanded={expanded}
+            onClick={() => handleNavClick("home")}
+            style={{ cursor: "pointer" }}
           />
         </LogoWrapper>
+
         <NavList expanded={expanded}>
           {sections.map(({ id, label, icon }) => (
             <NavItem
               key={id}
               isActive={active === id}
-              onClick={() => scrollToSection(id)}
+              onClick={() => handleNavClick(id)}
               tabIndex={0}
-              aria-label={`Scroll to ${label}`}
+              aria-label={`Go to ${label}`}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") scrollToSection(id);
+                if (e.key === "Enter" || e.key === " ") handleNavClick(id);
               }}
             >
               <IconWrapper expanded={expanded} isActive={active === id}>
@@ -145,6 +165,8 @@ function Navbar() {
 }
 
 export default Navbar;
+
+/* ===== styled components ===== */
 
 const ToggleButton = styled.button<{ expanded: boolean }>`
   position: fixed;
@@ -194,8 +216,6 @@ const SideNav = styled.nav<{ expanded: boolean; isMobile: boolean }>`
       expanded ? "2px 0 8px rgba(0, 0, 0, 0.2)" : "none"};
   }
 `;
-
-// ... keep your other styled components unchanged
 
 const LogoWrapper = styled.div`
   width: 100%;
@@ -250,7 +270,7 @@ const IconWrapper = styled.div<{ expanded: boolean; isActive: boolean }>`
   min-width: 24px;
   height: 24px;
   font-size: 1.25rem;
-  color: ${({ isActive }) => (isActive ? "0066FF" : "#999")};
+  color: ${({ isActive }) => (isActive ? "#0066FF" : "#999")}; /* fixed missing # */
   transition: color 0.3s;
 `;
 
