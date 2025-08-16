@@ -71,7 +71,7 @@ function Footer() {
           <a href="https://instagram.com/flexsaas" aria-label="FlexSaaS on Instagram" target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a href="https://linkedin.com/" aria-label="FlexSaaS on LinkedIn" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/company/flexsaas/" aria-label="FlexSaaS on LinkedIn" target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
           <a href="https://twitter.com" aria-label="FlexSaaS on X/Twitter" target="_blank" rel="noreferrer">
