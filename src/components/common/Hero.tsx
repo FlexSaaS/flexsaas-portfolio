@@ -1,14 +1,13 @@
+import FreeTrialModal from "./FreeTrialForm";
 import styled, { css } from "styled-components";
 import InfiniteImageScroll from "./WebsiteGallery";
-import React, { useState, useEffect } from "react";
-import FreeTrialForm from "./FreeTrialForm";
-import FreeTrialModal from "./FreeTrialForm";
+import { useState, useEffect } from "react";
 
-const scrollToSection = (id: string, event?: React.MouseEvent) => {
-  event?.preventDefault();
-  const section = document.getElementById(id);
-  section?.scrollIntoView({ behavior: "smooth" });
-};
+// const scrollToSection = (id: string, event?: React.MouseEvent) => {
+//   event?.preventDefault();
+//   const section = document.getElementById(id);
+//   section?.scrollIntoView({ behavior: "smooth" });
+// };
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
@@ -95,7 +94,7 @@ const HeroContainer = styled.section`
 
   @media (max-width: 1000px) {
     flex-direction: column;
-    height: auto; /* Let height expand as needed on mobile */
+    height: auto;
   }
 `;
 
@@ -177,14 +176,14 @@ const PrimaryButton = styled.button`
   }
 `;
 
-const SecondaryButton = styled.button`
-  ${buttonStyles}
-  background: transparent;
-  color: #0066ff;
-  border: 2px solid #0066ff;
+// const SecondaryButton = styled.button`
+//   ${buttonStyles}
+//   background: transparent;
+//   color: #0066ff;
+//   border: 2px solid #0066ff;
 
-  &:hover {
-    background: rgba(0, 102, 255, 0.1);
-    transform: translateY(-2px);
-  }
-`;
+//   &:hover {
+//     background: rgba(0, 102, 255, 0.1);
+//     transform: translateY(-2px);
+//   }
+// `;
