@@ -1,12 +1,13 @@
+import FreeTrialModal from "./FreeTrialForm";
 import styled, { css } from "styled-components";
 import InfiniteImageScroll from "./WebsiteGallery";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const scrollToSection = (id: string, event?: React.MouseEvent) => {
-  event?.preventDefault();
-  const section = document.getElementById(id);
-  section?.scrollIntoView({ behavior: "smooth" });
-};
+// const scrollToSection = (id: string, event?: React.MouseEvent) => {
+//   event?.preventDefault();
+//   const section = document.getElementById(id);
+//   section?.scrollIntoView({ behavior: "smooth" });
+// };
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
@@ -25,6 +26,7 @@ function useIsMobile() {
 
 function Hero() {
   const isMobile = useIsMobile();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Container>
       <HeroContainer
@@ -39,7 +41,10 @@ function Hero() {
               for small local businesses.
             </HeroSubtitle>
             <ButtonGroup>
-              <PrimaryButton onClick={(e) => scrollToSection("pricing", e)}>
+              <PrimaryButton onClick={() => setIsModalOpen(true)}>
+                Start Your Free Trial
+              </PrimaryButton>
+              {/* <PrimaryButton onClick={(e) => scrollToSection("pricing", e)}>
                 Get Started
               </PrimaryButton>
               <SecondaryButton onClick={() => scrollToSection("services")}>
@@ -47,7 +52,7 @@ function Hero() {
               </SecondaryButton>
               <PrimaryButton onClick={(e) => scrollToSection("contact", e)}>
                 Contact Us
-              </PrimaryButton>
+              </PrimaryButton> */}
             </ButtonGroup>
           </HeroContent>
         </LeftSide>
@@ -62,6 +67,10 @@ function Hero() {
           )}
         </RightSide>
       </HeroContainer>
+      <FreeTrialModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </Container>
   );
 }
@@ -85,7 +94,7 @@ const HeroContainer = styled.section`
 
   @media (max-width: 1000px) {
     flex-direction: column;
-    height: auto; /* Let height expand as needed on mobile */
+    height: auto;
   }
 `;
 
@@ -167,14 +176,14 @@ const PrimaryButton = styled.button`
   }
 `;
 
-const SecondaryButton = styled.button`
-  ${buttonStyles}
-  background: transparent;
-  color: #0066ff;
-  border: 2px solid #0066ff;
+// const SecondaryButton = styled.button`
+//   ${buttonStyles}
+//   background: transparent;
+//   color: #0066ff;
+//   border: 2px solid #0066ff;
 
-  &:hover {
-    background: rgba(0, 102, 255, 0.1);
-    transform: translateY(-2px);
-  }
-`;
+//   &:hover {
+//     background: rgba(0, 102, 255, 0.1);
+//     transform: translateY(-2px);
+//   }
+// `;
