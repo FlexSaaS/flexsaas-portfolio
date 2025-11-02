@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import InfiniteImageScroll from "./WebsiteGallery";
 import React, { useState, useEffect } from "react";
+import FreeTrialForm from "./FreeTrialForm";
+import FreeTrialModal from "./FreeTrialForm";
 
 const scrollToSection = (id: string, event?: React.MouseEvent) => {
   event?.preventDefault();
@@ -25,6 +27,7 @@ function useIsMobile() {
 
 function Hero() {
   const isMobile = useIsMobile();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Container>
       <HeroContainer
@@ -39,7 +42,10 @@ function Hero() {
               for small local businesses.
             </HeroSubtitle>
             <ButtonGroup>
-              <PrimaryButton onClick={(e) => scrollToSection("pricing", e)}>
+              <PrimaryButton onClick={() => setIsModalOpen(true)}>
+                Start Your Free Trial
+              </PrimaryButton>
+              {/* <PrimaryButton onClick={(e) => scrollToSection("pricing", e)}>
                 Get Started
               </PrimaryButton>
               <SecondaryButton onClick={() => scrollToSection("services")}>
@@ -47,7 +53,7 @@ function Hero() {
               </SecondaryButton>
               <PrimaryButton onClick={(e) => scrollToSection("contact", e)}>
                 Contact Us
-              </PrimaryButton>
+              </PrimaryButton> */}
             </ButtonGroup>
           </HeroContent>
         </LeftSide>
@@ -62,6 +68,10 @@ function Hero() {
           )}
         </RightSide>
       </HeroContainer>
+      <FreeTrialModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </Container>
   );
 }
